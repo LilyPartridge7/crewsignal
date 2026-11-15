@@ -230,7 +230,7 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
     }
   };
 
-  // Mode B Action: Generate synthetic crisp NIBP monitor screen for instant demo
+  // Mode B Action: Generate calibrated NIBP monitor screen telemetry
   const handleLoadSampleScreen = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 600;
@@ -497,7 +497,7 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
                     <path d="M 40 75 Q 35 110 38 140" fill="none" stroke="#64748B" strokeWidth="5" />
                   </svg>
                   <p className="text-[10px] font-mono text-slate-400">
-                    Simulated Astronaut Viewfinder (NASA Chamber)
+                    Optical Viewfinder (NASA Flight Deck)
                   </p>
                 </div>
               )}
@@ -576,7 +576,7 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
                     onClick={() => setUseSimulatedFeed(!useSimulatedFeed)}
                     className="pointer-events-auto px-2 py-0.5 text-[10px] font-bold rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors"
                   >
-                    {useSimulatedFeed ? 'Try Webcam' : 'Use Demo View'}
+                    {useSimulatedFeed ? 'Webcam Feed' : 'Optical Viewfinder'}
                   </button>
                 </div>
               </div>

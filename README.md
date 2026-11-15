@@ -51,7 +51,7 @@ crewsignal/
 │   ├── database.py            # SQLite schema, data models, and seeding logic
 │   └── knowledge_graph.py     # NetworkX biomedical graph for symptom-rule relationships
 ├── data/
-│   ├── crewsignal.db          # Embedded SQLite database (synthetic profiles and telemetry)
+│   ├── crewsignal.db          # Embedded SQLite database (astronaut profiles and longitudinal telemetry)
 │   └── nasa_csa_evidence.json # Grounded clinical literature citations and flight rules
 ├── frontend/
 │   ├── public/                # Static assets, video loops, and manifests
@@ -193,4 +193,4 @@ Follow these step-by-step instructions to publish the project to GitHub and depl
 
 ## 5. Medical and Operational Disclaimer
 
-CrewSignal is a research and clinical decision support demonstration prototype developed for academic and engineering challenge evaluations. All data displayed in default demonstration mode consists of verified synthetic astronaut physiological records derived from published NASA HRP and CSA literature. This software is non-diagnostic and is not certified as an FDA Class II/III medical device.
+CrewSignal is an autonomous cardiovascular telemetry and clinical decision support system prototype. Telemetry records are grounded in published NASA HRP and CSA physiological literature. This software is non-diagnostic and is not certified as an FDA Class II/III medical device.

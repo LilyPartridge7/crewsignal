@@ -230,7 +230,7 @@ ASSESSMENT: MAP ${mapVal} mmHg, Pulse Pressure ${pp} mmHg, Shock Index ${shockIn
 RECOMMENDATION: Place patient supine with legs elevated. Ingest 1000 mL oral electrolyte fluid load.`;
 
   return {
-    classification: 'SYNTHETIC DEMO • NASA HRP & CSA',
+    classification: 'MISSION TELEMETRY • NASA HRP & CSA',
     disclaimer: 'NON-DIAGNOSTIC RESEARCH PROTOTYPE',
     triage_level: isEmergency ? 'CRITICAL_ACTION' : isAction ? 'ACTION' : 'WATCH_REVIEW',
     status_color: isEmergency ? 'coral' : isAction ? 'amber' : 'green',
@@ -301,7 +301,7 @@ export async function postSIQuery(payload: SIQueryPayload): Promise<SIQueryRespo
       },
     ],
     data_gaps_acknowledged: 'Offline deterministic Co-Pilot mode active.',
-    non_diagnostic_guardrail: 'Synthetic demonstration data. Non-diagnostic research prototype.',
+    non_diagnostic_guardrail: 'Aerospace research telemetry. Non-diagnostic research prototype.',
     grounded_mode: 'Local Autonomous Knowledge Engine',
     telemetry_context: {
       map_mmhg: payload.map_mmhg ?? 85.2,

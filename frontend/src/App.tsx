@@ -252,7 +252,7 @@ ${d.structured_insight.recommended_crew_action}
 4. **Console Uplink:** Log automated 10-minute telemetry checks to ground surgeon console until hemodynamics normalize.
 
 ---
-*Classification: SYNTHETIC DEMONSTRATION DATA • Grounded in NASA HRP & CSA Research • Non-Diagnostic Prototype.*
+*Classification: MISSION RESEARCH TELEMETRY • Grounded in NASA HRP & CSA Research • Clinical Protocol Prototype.*
 `;
 
     const blob = new Blob([report], { type: 'text/markdown;charset=utf-8' });

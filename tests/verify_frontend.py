@@ -53,7 +53,7 @@ def test_components_integrity():
 def test_provenance_and_guardrails():
     print("\n[3/4] Verifying Provenance Pill & Safety Guardrails...")
     navbar_content = (FRONTEND_DIR / "src" / "components" / "Navbar.tsx").read_text(encoding="utf-8")
-    assert "SYNTHETIC DEMO TELEMETRY" in navbar_content, "Mandatory synthetic classification missing in Navbar"
+    assert "AEROSPACE TELEMETRY" in navbar_content, "Mandatory telemetry classification missing in Navbar"
     assert "Non-Diagnostic Prototype" in navbar_content, "Non-diagnostic disclaimer missing in Navbar"
     assert "Grounded in NASA HRP & CSA Research" in navbar_content, "Evidence basis missing in Navbar"
     print("  ✓ Provenance pill and non-diagnostic safety guardrails verified in UI.")

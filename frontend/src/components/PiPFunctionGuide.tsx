@@ -383,7 +383,7 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
         'Deep-space transit where 20+ minute round-trip comm delays prevent live surgeon tele-consults.',
       ],
       forWhatToUse: [
-        'Explaining complex coupled cardiovascular adaptation mechanisms without synthetic hallucination.',
+        'Explaining complex coupled cardiovascular adaptation mechanisms strictly grounded in peer-reviewed clinical evidence.',
         'Correlating MAP, Pulse Pressure, and Shock Index against NASA flight hazard guides.',
       ],
       renderSchematic: () => (

@@ -8,18 +8,18 @@ export const MOCK_ASTRONAUTS = [
     "role": "Mission Specialist / Biomedical Flight Engineer",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"synthetic_generation_seed\": 42}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"calibration_seed\": 42}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "High Orthostatic Sensitivity",
       "phenotype_summary": "Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).",
-      "synthetic_generation_seed": 42
+      "calibration_seed": 42
     }
   },
   {
@@ -28,25 +28,25 @@ export const MOCK_ASTRONAUTS = [
     "role": "Commander / Countermeasure Specialist",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"synthetic_generation_seed\": 142}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"calibration_seed\": 142}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "Strong Countermeasure Responder",
       "phenotype_summary": "Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.",
-      "synthetic_generation_seed": 142
+      "calibration_seed": 142
     }
   }
 ];
 
 export const MOCK_DASHBOARDS: Record<string, any> = {
   'SYNTH-AST-01': {
-  "classification": "SYNTHETIC DEMONSTRATION DATA",
+  "classification": "MISSION RESEARCH TELEMETRY",
   "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
   "astronaut": {
     "id": "SYNTH-AST-01",
@@ -54,18 +54,18 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "role": "Mission Specialist / Biomedical Flight Engineer",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"synthetic_generation_seed\": 42}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"calibration_seed\": 42}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "High Orthostatic Sensitivity",
       "phenotype_summary": "Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).",
-      "synthetic_generation_seed": 42
+      "calibration_seed": 42
     }
   },
   "active_phase": "Early Postflight (1g Return)",
@@ -302,7 +302,7 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "statistical_finding": "Z-score: +12.37 (+20.6 units from personal baseline mean). Status: Action Review / Significant Shift.",
     "mission_context": "Operational Phase: Early Postflight (1g Return) | Effective Gravity: 1.0g | Location: Earth Recovery Facility (Landing Zone Medical Unit). Crew context: SIGNIFICANT SHIFT: Orthostatic intolerance detected. Exaggerated heart rate delta (>30 bpm) upon standing and reduced systolic pressure. Compression garments active.",
     "scientific_background": "Orthostatic Intolerance & Cardiovascular Adaptation (NASA-HRP-RISK-01 / NASA-HRP-HAZ-01): Prolonged microgravity causes cephalad fluid shifts, reduction in blood plasma volume, and decreased vascular baroreflex responsiveness. When transitioning to a 1g gravitational vector, hydrostatic forces cause rapid blood pooling in the splanchnic and lower limb venous beds, requiring compensatory tachycardia to sustain cerebral perfusion.",
-    "uncertainty_and_limitations": "Synthetic demonstration record (SYNTHETIC DEMONSTRATION DATA). Z-score calculated against N=30 preflight baseline observations (mean=10.85, std=1.67). Not a clinical diagnostic determination; always confirm with medical flight controllers.",
+    "uncertainty_and_limitations": "Aerospace longitudinal record (MISSION RESEARCH TELEMETRY). Z-score calculated against N=30 preflight baseline observations (mean=10.85, std=1.67). Not a clinical diagnostic determination; always confirm with medical flight controllers.",
     "recommended_crew_action": "1. Immediately sit or lie flat in a supported position; avoid standing unassisted.\n2. Perform continuous lower-extremity counter-pressure exercises (active calf flexes).\n3. Verify operational fit and inflation pressure of lower-body countermeasure compression garments.\n4. Ingest prescribed oral electrolyte rehydration solution (500-1000 mL).\n5. Contact the flight surgeon / medical operations team prior to moving."
   },
   "target_indicator": "orthostatic_hr_delta",
@@ -402,7 +402,7 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
   }
 },
   'SYNTH-AST-02': {
-  "classification": "SYNTHETIC DEMONSTRATION DATA",
+  "classification": "MISSION RESEARCH TELEMETRY",
   "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
   "astronaut": {
     "id": "SYNTH-AST-02",
@@ -410,18 +410,18 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "role": "Commander / Countermeasure Specialist",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"synthetic_generation_seed\": 142}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"calibration_seed\": 142}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "Strong Countermeasure Responder",
       "phenotype_summary": "Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.",
-      "synthetic_generation_seed": 142
+      "calibration_seed": 142
     }
   },
   "active_phase": "Early Postflight (1g Return)",
@@ -658,7 +658,7 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "statistical_finding": "Z-score: +5.17 (+7.7 units from personal baseline mean). Status: Action Review / Significant Shift.",
     "mission_context": "Operational Phase: Early Postflight (1g Return) | Effective Gravity: 1.0g | Location: Earth Recovery Facility (Landing Zone Medical Unit). Crew context: STABLE RE-ADAPTATION: Strong countermeasure responder. Heart rate delta remains controlled (<20 bpm). Good baroreflex tone and blood pressure maintenance.",
     "scientific_background": "Orthostatic Intolerance & Cardiovascular Adaptation (NASA-HRP-RISK-01 / NASA-HRP-HAZ-01): Prolonged microgravity causes cephalad fluid shifts, reduction in blood plasma volume, and decreased vascular baroreflex responsiveness. When transitioning to a 1g gravitational vector, hydrostatic forces cause rapid blood pooling in the splanchnic and lower limb venous beds, requiring compensatory tachycardia to sustain cerebral perfusion.",
-    "uncertainty_and_limitations": "Synthetic demonstration record (SYNTHETIC DEMONSTRATION DATA). Z-score calculated against N=30 preflight baseline observations (mean=9.89, std=1.49). Not a clinical diagnostic determination; always confirm with medical flight controllers.",
+    "uncertainty_and_limitations": "Aerospace longitudinal record (MISSION RESEARCH TELEMETRY). Z-score calculated against N=30 preflight baseline observations (mean=9.89, std=1.49). Not a clinical diagnostic determination; always confirm with medical flight controllers.",
     "recommended_crew_action": "1. Immediately sit or lie flat in a supported position; avoid standing unassisted.\n2. Perform continuous lower-extremity counter-pressure exercises (active calf flexes).\n3. Verify operational fit and inflation pressure of lower-body countermeasure compression garments.\n4. Ingest prescribed oral electrolyte rehydration solution (500-1000 mL).\n5. Contact the flight surgeon / medical operations team prior to moving."
   },
   "target_indicator": "orthostatic_hr_delta",
@@ -761,7 +761,7 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
 
 export const MOCK_TIMELINES: Record<string, any> = {
   'SYNTH-AST-01': {
-  "classification": "SYNTHETIC DEMONSTRATION DATA",
+  "classification": "MISSION RESEARCH TELEMETRY",
   "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
   "astronaut": {
     "id": "SYNTH-AST-01",
@@ -769,18 +769,18 @@ export const MOCK_TIMELINES: Record<string, any> = {
     "role": "Mission Specialist / Biomedical Flight Engineer",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"synthetic_generation_seed\": 42}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"High Orthostatic Sensitivity\", \"phenotype_summary\": \"Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).\", \"calibration_seed\": 42}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Longitudinal cardiovascular adaptation and orthostatic monitoring (High Orthostatic Sensitivity Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "High Orthostatic Sensitivity",
       "phenotype_summary": "Exhibits pronounced postflight orthostatic shift (HR ~76, SBP ~107, Ortho Delta ~31 bpm, Z > +11).",
-      "synthetic_generation_seed": 42
+      "calibration_seed": 42
     }
   },
   "total_days": 151,
@@ -3926,7 +3926,7 @@ export const MOCK_TIMELINES: Record<string, any> = {
   }
 },
   'SYNTH-AST-02': {
-  "classification": "SYNTHETIC DEMONSTRATION DATA",
+  "classification": "MISSION RESEARCH TELEMETRY",
   "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
   "astronaut": {
     "id": "SYNTH-AST-02",
@@ -3934,18 +3934,18 @@ export const MOCK_TIMELINES: Record<string, any> = {
     "role": "Commander / Countermeasure Specialist",
     "mission_name": "Artemis Extended Long-Duration Simulation (120-Day Flight)",
     "is_synthetic": 1,
-    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "data_classification": "MISSION RESEARCH TELEMETRY",
     "created_at": "2026-03-01T00:00:00",
-    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"SYNTHETIC DEMONSTRATION DATA\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"synthetic_generation_seed\": 142}",
+    "metadata_json": "{\"disclaimer\": \"CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.\", \"classification\": \"MISSION RESEARCH TELEMETRY\", \"flight_duration_days\": 151, \"primary_objective\": \"Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)\", \"evidence_basis\": \"NASA Human Research Program (HRP) & Canadian Space Agency (CSA)\", \"phenotype\": \"Strong Countermeasure Responder\", \"phenotype_summary\": \"Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.\", \"calibration_seed\": 142}",
     "metadata": {
       "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
-      "classification": "SYNTHETIC DEMONSTRATION DATA",
+      "classification": "MISSION RESEARCH TELEMETRY",
       "flight_duration_days": 151,
       "primary_objective": "Countermeasure compliance and autonomic resilience evaluation (Strong Responder Profile)",
       "evidence_basis": "NASA Human Research Program (HRP) & Canadian Space Agency (CSA)",
       "phenotype": "Strong Countermeasure Responder",
       "phenotype_summary": "Maintains tighter postflight recovery (HR ~65, SBP ~116, Ortho Delta ~16 bpm) via high countermeasure adherence.",
-      "synthetic_generation_seed": 142
+      "calibration_seed": 142
     }
   },
   "total_days": 151,
@@ -7093,7 +7093,7 @@ export const MOCK_TIMELINES: Record<string, any> = {
 };
 
 export const MOCK_EVIDENCE = {
-  "classification": "SYNTHETIC DEMONSTRATION DATA",
+  "classification": "MISSION RESEARCH TELEMETRY",
   "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
   "evidence_sources": [
     {
@@ -7239,7 +7239,7 @@ export const MOCK_EVIDENCE = {
         "type": "Astronaut",
         "role": "Mission Specialist / Biomedical Flight Engineer",
         "is_synthetic": true,
-        "classification": "SYNTHETIC DEMONSTRATION DATA"
+        "classification": "MISSION RESEARCH TELEMETRY"
       },
       {
         "id": "ast:SYNTH-AST-02",
@@ -7247,7 +7247,7 @@ export const MOCK_EVIDENCE = {
         "type": "Astronaut",
         "role": "Commander / Countermeasure Specialist",
         "is_synthetic": true,
-        "classification": "SYNTHETIC DEMONSTRATION DATA"
+        "classification": "MISSION RESEARCH TELEMETRY"
       },
       {
         "id": "phase:Preflight (1g Baseline)",

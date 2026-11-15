@@ -294,15 +294,15 @@ export const ProtocolTimer: React.FC<ProtocolTimerProps> = ({
           </button>
         </div>
 
-        {/* Hackathon Fast-Forward Button */}
+        {/* Fast-Forward Protocol Button */}
         <button
           type="button"
           onClick={handleFastForward}
           className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition-colors"
-          title="Instantly advance timer for hackathon demonstration"
+          title="Instantly advance protocol sequence timer"
         >
           <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-          <span>Fast-Forward Demo</span>
+          <span>Fast-Forward Protocol</span>
           <FastForward className="w-3 h-3" />
         </button>
       </div>

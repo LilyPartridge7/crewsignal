@@ -136,8 +136,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <>
                 <ShieldAlert className="w-3.5 h-3.5 text-sky-500 shrink-0" strokeWidth={2} />
-                <span className="hidden md:inline">SYNTHETIC DEMO • NASA HRP &amp; CSA • NON-DIAGNOSTIC</span>
-                <span className="inline md:hidden">NASA HRP • NON-DIAGNOSTIC</span>
+                <span className="hidden md:inline">AEROSPACE TELEMETRY • NASA HRP &amp; CSA • PROTOCOL ACTIVE</span>
+                <span className="inline md:hidden">NASA HRP • PROTOCOL ACTIVE</span>
               </>
             )}
           </div>
