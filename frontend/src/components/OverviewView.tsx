@@ -539,7 +539,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             </button>
           </div>
 
-          {/* Center: Warm Natural Skin-Tone Anatomical Human SVG */}
+          {/* Center: High-Fidelity Aerospace Medical HUD Body Map */}
           <div className="flex-1 min-h-0 flex items-center justify-center py-2">
             <BodyMapSvg
               selectedHotspot={selectedHotspot}
