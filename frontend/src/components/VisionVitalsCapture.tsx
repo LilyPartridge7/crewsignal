@@ -44,6 +44,15 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const animationFrameRef = useRef<number | null>(null);
+  const [camAttempt, setCamAttempt] = useState(0);
+  // Attach the live stream to whichever <video> is mounted, so switching modes never leaves a black frame.
+  const attachVideo = (el: HTMLVideoElement | null) => {
+    videoRef.current = el;
+    if (el && streamRef.current && el.srcObject !== streamRef.current) {
+      el.srcObject = streamRef.current;
+      el.play().catch(() => {});
+    }
+  };
 
   // Mode A: Alignment & Frame Quality State
   const [cuffYOffset, setCuffYOffset] = useState<number>(0); // -40 to +40 pixels offset from heart level
@@ -100,7 +109,13 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
         setUseSimulatedFeed(false);
       } catch (err: unknown) {
         if (!mounted) return;
-        const msg = err instanceof Error ? err.message : 'Webcam unavailable';
+        const name = err instanceof DOMException ? err.name : '';
+        const msg =
+          name === 'NotAllowedError' ? 'Camera blocked. Allow it from the camera icon in the address bar, then retry.'
+          : name === 'NotFoundError' || name === 'OverconstrainedError' ? 'No camera was found on this device.'
+          : name === 'NotReadableError' ? 'The camera is in use by another app or tab. Close it, then retry.'
+          : !window.isSecureContext ? 'The camera needs a secure (https) page.'
+          : err instanceof Error ? err.message : 'Camera unavailable';
         setCameraError(msg);
         setHasCamera(false);
         setUseSimulatedFeed(true);
@@ -123,7 +138,7 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isOpen, embedded]);
+  }, [isOpen, embedded, camAttempt]);
 
   // Optical analysis loop for frame brightness and stability
   useEffect(() => {
@@ -480,7 +495,8 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
             {/* Viewfinder Canvas / Video Frame */}
             <div className="relative w-full aspect-video max-h-48 bg-black rounded-lg overflow-hidden border border-slate-300 dark:border-slate-800 shadow-inner flex items-center justify-center shrink-0">
               <video
-                ref={videoRef}
+                ref={attachVideo}
+                autoPlay
                 playsInline
                 muted
                 className={`w-full h-full object-cover ${useSimulatedFeed ? 'hidden' : 'block'}`}
@@ -497,8 +513,13 @@ export const VisionVitalsCapture: React.FC<VisionVitalsCaptureProps> = ({
                     <path d="M 40 75 Q 35 110 38 140" fill="none" stroke="#64748B" strokeWidth="5" />
                   </svg>
                   <p className="text-[10px] font-mono text-slate-400">
-                    Optical Viewfinder (NASA Flight Deck)
+                    {cameraError ?? 'Optical Viewfinder (NASA Flight Deck)'}
                   </p>
+                  {cameraError && (
+                    <button type="button" onClick={() => setCamAttempt((n) => n + 1)} className="pointer-events-auto relative z-10 mt-1.5 rounded-full bg-sky-600 px-3 py-1 text-[11px] font-bold text-white hover:bg-sky-500">
+                      Retry camera
+                    </button>
+                  )}
                 </div>
               )}
 
