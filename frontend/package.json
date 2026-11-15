@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/three": "^0.183.1",
     "lucide-react": "^0.475.0",
+    "open-anatomy-3d": "0.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.15.0",

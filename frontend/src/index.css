@@ -2,16 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Orbital Dusk design tokens.
+ * One palette, two moods: the dark theme sits over the warp starfield,
+ * the light theme over the station-and-planet loop. Panels are frosted
+ * glass so the footage stays visible but never fights the numbers.
+ */
 @layer base {
+  :root {
+    --cs-ground: #f3eef7;
+    --cs-text: #1e1a35;
+    --cs-muted: #574e70;
+    --cs-line: rgba(43, 33, 73, 0.12);
+    --cs-panel: rgba(255, 255, 255, 0.68);
+    --cs-panel-strong: rgba(255, 255, 255, 0.86);
+    --cs-well: rgba(43, 33, 73, 0.05);
+    --cs-accent: #ffb59a;
+    --cs-accent-ink: #1b1730;
+    --cs-accent-text: #a6461f;
+    --cs-ice: #1d6fb8;
+    --cs-good: #15803d;
+    --cs-warn: #a16207;
+    --cs-bad: #be123c;
+    --cs-shadow: 0 1px 2px rgba(30, 26, 53, 0.06), 0 12px 32px -12px rgba(30, 26, 53, 0.18);
+    color-scheme: light;
+  }
+  .dark {
+    --cs-ground: #14122a;
+    --cs-text: #f5f1fa;
+    --cs-muted: #cfc3e0;
+    --cs-line: rgba(255, 255, 255, 0.14);
+    --cs-panel: rgba(23, 19, 46, 0.55);
+    --cs-panel-strong: rgba(36, 29, 66, 0.82);
+    --cs-well: rgba(255, 255, 255, 0.06);
+    --cs-accent: #ffb59a;
+    --cs-accent-ink: #1b1730;
+    --cs-accent-text: #ffc9b3;
+    --cs-ice: #bfe3ff;
+    --cs-good: #86efac;
+    --cs-warn: #fcd34d;
+    --cs-bad: #fda4af;
+    --cs-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 16px 40px -16px rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
+  }
+
+  /* Reserve the scrollbar's width so pages don't jump sideways when switching tabs */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    background: var(--cs-ground);
+    color: var(--cs-text);
+    font-feature-settings: 'tnum' 0;
   }
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  :focus-visible {
+    outline: 2px solid var(--cs-accent);
+    outline-offset: 2px;
   }
 }
 
-/* Custom scrollbar */
+@layer components {
+  /* Frosted panel: the one surface everything sits on */
+  .cs-panel {
+    @apply rounded-3xl border backdrop-blur-xl;
+    background: var(--cs-panel);
+    border-color: var(--cs-line);
+    box-shadow: var(--cs-shadow);
+  }
+  .cs-well {
+    @apply rounded-2xl;
+    background: var(--cs-well);
+  }
+  .cs-num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .cs-btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold transition-colors disabled:opacity-50;
+  }
+  .cs-btn-primary {
+    @apply cs-btn;
+    background: var(--cs-accent);
+    color: var(--cs-accent-ink);
+  }
+  .cs-btn-primary:hover {
+    filter: brightness(1.05);
+  }
+  .cs-btn-ghost {
+    @apply cs-btn border;
+    border-color: var(--cs-line);
+    color: var(--cs-text);
+    background: var(--cs-well);
+  }
+  .cs-btn-ghost:hover {
+    background: var(--cs-panel-strong);
+  }
+  .cs-input {
+    @apply min-h-[44px] w-full rounded-xl border px-3 text-base font-semibold focus:outline-none;
+    background: var(--cs-panel-strong);
+    border-color: var(--cs-line);
+    color: var(--cs-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .cs-input:focus {
+    border-color: var(--cs-accent);
+  }
+  .cs-seg {
+    @apply inline-flex gap-1 rounded-full border p-1;
+    border-color: var(--cs-line);
+    background: var(--cs-well);
+  }
+  .cs-seg > button {
+    @apply min-h-[36px] rounded-full px-3 text-sm font-semibold transition-colors;
+    color: var(--cs-muted);
+  }
+  .cs-seg > button[aria-pressed='true'] {
+    background: var(--cs-panel-strong);
+    color: var(--cs-text);
+    box-shadow: var(--cs-shadow);
+  }
+}
+
+/* Thin scrollbars that follow the theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -20,9 +137,14 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--cs-line);
   border-radius: 3px;
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

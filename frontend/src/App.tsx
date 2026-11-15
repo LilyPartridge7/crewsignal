@@ -65,6 +65,10 @@ export const App: React.FC = () => {
     'Late Postflight Recovery',
   ]);
   const [activeTab, setActiveTab] = useState<NavTabId>('home');
+  // Each tab opens at its top instead of inheriting the previous tab's scroll position.
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [activeTab]);
   const [targetIndicator, setTargetIndicator] = useState<string>('orthostatic_hr_delta');
 
   // Handle 1-Click Launch from Mission Home Landing Page
@@ -265,8 +269,8 @@ ${d.structured_insight.recommended_crew_action}
   };
 
   return (
-    // Single-viewport zero-scroll Bento Box frame
-    <div className="h-screen w-screen overflow-hidden flex flex-col p-3 gap-2.5 relative select-none">
+    // Whole-page frame: the document scrolls, so no view is clipped inside a short box
+    <div className="min-h-[100dvh] w-full flex flex-col p-2 sm:p-3 gap-2 sm:gap-3 relative text-cs-text">
       {/* Living Ambient Animated Backdrop */}
       <ReactiveBackdrop theme={theme} mode={backdropMode} fit={backdropFit} />
 
@@ -293,14 +297,12 @@ ${d.structured_insight.recommended_crew_action}
       />
 
       {/* Main Single-Viewport Bento Canvas */}
-      <main className="max-w-[1440px] w-full mx-auto flex-1 min-h-0 overflow-hidden relative flex flex-col">
+      <main className="max-w-[1440px] w-full mx-auto flex-1 relative flex flex-col">
         {/* Loading State */}
         {loading && !dashboardData && (
           <div className="h-full w-full flex flex-col items-center justify-center space-y-3">
-            <RefreshCw className="w-8 h-8 text-sky-600 dark:text-sky-400 animate-spin" />
-            <p className="text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
-              Initializing Mission Telemetry &amp; Biophysical Models...
-            </p>
+            <RefreshCw className="w-7 h-7 text-cs-accent animate-spin" />
+            <p className="text-sm font-semibold text-cs-muted">Loading crew telemetry…</p>
           </div>
         )}
 
