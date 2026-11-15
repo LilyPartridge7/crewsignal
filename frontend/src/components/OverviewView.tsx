@@ -74,7 +74,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
     return { label: 'Nominal Envelope', color: 'text-emerald-600 dark:text-emerald-400 border-emerald-500/40 bg-emerald-500/10' };
   }, [computedOrthoDelta]);
 
-  // NASA Level IV/V Biophysical Hemodynamic Modeling (Dynamic Gravity Hydrostatic Gradient)
+  // NASA Biophysical Hemodynamic Modeling (Dynamic Gravity Hydrostatic Gradient)
   const biophysics = useMemo(() => {
     const sbp = parseFloat(logSbp) || 115;
     const dbp = parseFloat(logDbp) || 75;
@@ -260,8 +260,8 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   const derivedHemo = data.derived_hemodynamics || {
     map_mmhg: sbpVal !== null && dbpVal !== null ? Math.round((dbpVal + (sbpVal - dbpVal) / 3.0) * 10) / 10 : 85.2,
     pulse_pressure_mmhg: sbpVal !== null && dbpVal !== null ? Math.round((sbpVal - dbpVal) * 10) / 10 : 44.7,
-    pulse_pressure_flag: sbpVal !== null && dbpVal !== null && sbpVal - dbpVal < 25 ? 'Narrowed (< 25 mmHg)' : 'Normal (>= 25 mmHg)',
-    is_pulse_pressure_narrowed: Boolean(sbpVal !== null && dbpVal !== null && sbpVal - dbpVal < 25),
+    pulse_pressure_flag: sbpVal !== null && dbpVal !== null && sbpVal - dbpVal < 40 ? 'Narrowed (< 40 mmHg)' : 'Normal (>= 40 mmHg)',
+    is_pulse_pressure_narrowed: Boolean(sbpVal !== null && dbpVal !== null && sbpVal - dbpVal < 40),
     shock_index: hrVal !== null && sbpVal !== null && sbpVal > 0 ? Math.round((hrVal / sbpVal) * 100) / 100 : 0.67,
     shock_index_baseline: 0.51,
     shock_index_delta: null,
@@ -278,11 +278,11 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   };
 
   return (
-    <div className="max-w-[1440px] w-full mx-auto flex-1 min-h-0 flex flex-col gap-3 select-none overflow-hidden">
+    <div className="max-w-[1440px] w-full mx-auto flex-1 min-h-0 flex flex-col gap-3 select-none overflow-y-auto pr-1">
       {/* ========================================================================= */}
-      {/* TOP KPI STRIP: 4 Primary Vitals + 3 Derived Hemodynamics (7 Columns)      */}
+      {/* TOP KPI STRIP: 4 Primary Vitals + 3 Derived Hemodynamics                  */}
       {/* ========================================================================= */}
-      <div className="shrink-0 grid grid-cols-7 gap-2.5">
+      <div className="shrink-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-2.5">
         {/* Card 1: Resting HR (Cyan Tint) */}
         <div className="p-3 rounded-xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md flex flex-col justify-between gap-1 shadow-sm transition-all hover:scale-[1.01]">
           <div className="flex items-center justify-between">
@@ -596,20 +596,20 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                 )}
                 {pattern.signature_name}
               </span>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
                 <span
-                  className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-md border ${
+                  className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-md border whitespace-nowrap shrink-0 ${
                     data.flight_rules?.overall_status === 'NO-GO'
                       ? 'bg-rose-500/30 text-rose-800 dark:text-rose-200 border-rose-500/50'
                       : data.flight_rules?.overall_status === 'CAUTION'
                       ? 'bg-amber-500/30 text-amber-800 dark:text-amber-200 border-amber-500/50'
                       : 'bg-emerald-500/30 text-emerald-800 dark:text-emerald-200 border-emerald-500/50'
                   }`}
-                  title="NASA Flight Rule Clearance (JSC Flight Operations Directorate)"
+                  title="Illustrative Rule (Modeled on NASA Flight Rules &amp; HRP Protocols)"
                 >
-                  {data.flight_rules ? `MED-B13-102: ${data.flight_rules.overall_status}` : 'MED-B13-102: NO-GO'}
+                  {data.flight_rules ? `Rule B13: ${data.flight_rules.overall_status}` : 'Rule B13: NO-GO'}
                 </span>
-                <span className="text-xs font-bold uppercase px-2 py-0.5 rounded-md bg-black/20 tabular-nums">
+                <span className="text-xs font-bold uppercase px-2 py-0.5 rounded-md bg-black/20 tabular-nums whitespace-nowrap shrink-0">
                   {pattern.severity}
                 </span>
               </div>
@@ -796,7 +796,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             onClick={handleRecordCountermeasure}
             disabled={isLoggingCm}
             className="w-full h-9 px-3 rounded-xl text-xs font-extrabold flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white shadow-xs transition-colors shrink-0 disabled:opacity-50"
-            title="Log prescribed non-pharmacological countermeasure adherence directly to SQLite telemetry"
+            title="Log prescribed non-pharmacological countermeasure adherence directly to mission telemetry"
           >
             <CheckCircle2 className="w-4 h-4 shrink-0" strokeWidth={2} />
             <span>{isLoggingCm ? 'Recording...' : cmFeedback ? cmFeedback : 'Record Countermeasure Taken'}</span>
@@ -892,7 +892,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
           {/* Middle Module: Clean 2x2 Input Grid with Automated Ortho Delta Calculation */}
           <form onSubmit={handleLogSubmit} className="space-y-2 my-auto">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {/* Supine HR */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
@@ -905,7 +905,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                     setLogSupineHr(e.target.value);
                     setIsFormDirty(true);
                   }}
-                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
+                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     selectedHotspot === 'heart' ? 'border-orange-500 ring-1 ring-orange-400' : 'border-transparent dark:border-slate-700/60'
                   }`}
                   required
@@ -924,7 +924,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                     setLogStandHr(e.target.value);
                     setIsFormDirty(true);
                   }}
-                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
+                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     selectedHotspot === 'baroreceptors' ? 'border-orange-500 ring-1 ring-orange-400' : 'border-transparent dark:border-slate-700/60'
                   }`}
                   required
@@ -943,7 +943,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                     setLogSbp(e.target.value);
                     setIsFormDirty(true);
                   }}
-                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
+                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     selectedHotspot === 'aorta' ? 'border-orange-500 ring-1 ring-orange-400' : 'border-transparent dark:border-slate-700/60'
                   }`}
                   required
@@ -962,7 +962,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                     setLogDbp(e.target.value);
                     setIsFormDirty(true);
                   }}
-                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 ${
+                  className={`h-9 w-full px-2 text-sm font-bold bg-white/40 dark:bg-slate-900/60 border rounded-lg text-slate-900 dark:text-white tabular-nums backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     selectedHotspot === 'aorta' ? 'border-orange-500 ring-1 ring-orange-400' : 'border-transparent dark:border-slate-700/60'
                   }`}
                   required

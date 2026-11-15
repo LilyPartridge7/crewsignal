@@ -14,19 +14,22 @@ import {
   MOCK_EVIDENCE,
 } from './mockFallbackData';
 
+const HAS_REMOTE_BACKEND = Boolean(import.meta.env.VITE_API_BASE_URL);
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '') + '/api';
 
 export async function fetchAstronauts(): Promise<Astronaut[]> {
-  try {
-    const res = await fetch(`${API_BASE}/astronauts`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.astronauts && data.astronauts.length > 0) {
-        return data.astronauts;
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/astronauts`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.astronauts && data.astronauts.length > 0) {
+          return data.astronauts;
+        }
       }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side data
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
   return MOCK_ASTRONAUTS;
 }
@@ -36,18 +39,20 @@ export async function fetchDashboard(
   phase?: string,
   indicator?: string
 ): Promise<DashboardData> {
-  try {
-    const params = new URLSearchParams();
-    if (phase) params.append('phase', phase);
-    if (indicator) params.append('indicator', indicator);
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const params = new URLSearchParams();
+      if (phase) params.append('phase', phase);
+      if (indicator) params.append('indicator', indicator);
 
-    const url = `${API_BASE}/dashboard/${astronautId}${params.toString() ? `?${params.toString()}` : ''}`;
-    const res = await fetch(url);
-    if (res.ok) {
-      return await res.json();
+      const url = `${API_BASE}/dashboard/${astronautId}${params.toString() ? `?${params.toString()}` : ''}`;
+      const res = await fetch(url);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side data
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
 
   const fallback = MOCK_DASHBOARDS[astronautId] || MOCK_DASHBOARDS['SYNTH-AST-01'];
@@ -58,25 +63,29 @@ export async function fetchDashboard(
 }
 
 export async function fetchTimeline(astronautId: string): Promise<TimelineData> {
-  try {
-    const res = await fetch(`${API_BASE}/timeline/${astronautId}`);
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/timeline/${astronautId}`);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side data
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
   return MOCK_TIMELINES[astronautId] || MOCK_TIMELINES['SYNTH-AST-01'];
 }
 
 export async function fetchEvidence(): Promise<EvidencePayload> {
-  try {
-    const res = await fetch(`${API_BASE}/evidence`);
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/evidence`);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side data
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
   return MOCK_EVIDENCE;
 }
@@ -96,17 +105,19 @@ export async function postMeasurement(payload: {
   collection_context?: string;
   notes?: string;
 }): Promise<{ success: boolean; id: number; message: string; derived_hemodynamics?: any; quality_validation?: any }> {
-  try {
-    const res = await fetch(`${API_BASE}/measurements`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/measurements`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side data
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
 
   const sbp = payload.systolic_bp ?? 115;
@@ -138,17 +149,19 @@ export async function simulateCountermeasures(payload: {
   lbnp_sessions_per_week: number;
   exercise_min_per_day: number;
 }): Promise<any> {
-  try {
-    const res = await fetch(`${API_BASE}/simulate-countermeasures`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/simulate-countermeasures`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side model
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
 
   const f_score = payload.fluid_loading_pct / 100.0;
@@ -190,17 +203,19 @@ export async function postAcuteTriage(payload: {
   symptom: string;
   gravity_context?: string;
 }): Promise<TriageResult> {
-  try {
-    const res = await fetch(`${API_BASE}/acute-triage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/acute-triage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side logic
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
 
   const mapVal = Math.round((payload.dbp + (payload.sbp - payload.dbp) / 3.0) * 10) / 10;
@@ -210,7 +225,7 @@ export async function postAcuteTriage(payload: {
   const isAction = payload.sbp < 100 || (payload.ortho_delta ?? 0) >= 28 || shockIndex >= 0.7;
 
   const sbarStr = `SITUATION: Acute cardiovascular event (${payload.symptom}).
-BACKGROUND: Autonomous offline triage packet grounded in NASA HRP flight rules.
+BACKGROUND: Autonomous triage packet modeled on NASA Flight Rules & HRP Protocols.
 ASSESSMENT: MAP ${mapVal} mmHg, Pulse Pressure ${pp} mmHg, Shock Index ${shockIndex}.
 RECOMMENDATION: Place patient supine with legs elevated. Ingest 1000 mL oral electrolyte fluid load.`;
 
@@ -244,17 +259,19 @@ RECOMMENDATION: Place patient supine with legs elevated. Ingest 1000 mL oral ele
 }
 
 export async function postSIQuery(payload: SIQueryPayload): Promise<SIQueryResponse> {
-  try {
-    const res = await fetch(`${API_BASE}/si-query`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      return await res.json();
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/si-query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (_err) {
+      // Remote backend unreachable, fallback to client-side synthesis
     }
-  } catch (_err) {
-    // Standalone Vercel deployment fallback
   }
 
   return {
@@ -264,7 +281,7 @@ export async function postSIQuery(payload: SIQueryPayload): Promise<SIQueryRespo
     answer_bullets: [
       'Orthostatic tachycardia reflects autonomic baroreflex compensation for contracted plasma volume (-14.2%).',
       'Cerebral perfusion pressure (CPP = MAP_brain - ICP) must remain above 50 mmHg to avoid presyncope.',
-      'Formal Flight Rule MED-B13-102 mandates recumbency and fluid loading until hemodynamics stabilize.',
+      'Illustrative Rule MED-B13-102 (modeled on NASA Flight Rules) mandates recumbency and fluid loading until hemodynamics stabilize.',
       'Lower-body counter-pressure garments (40-50 mmHg) reduce splanchnic and femoral venous pooling.',
     ],
     cited_sources: [
@@ -284,7 +301,7 @@ export async function postSIQuery(payload: SIQueryPayload): Promise<SIQueryRespo
       },
     ],
     data_gaps_acknowledged: 'Offline deterministic Co-Pilot mode active.',
-    non_diagnostic_guardrail: 'Synthetic demonstration data. Non-diagnostic.',
+    non_diagnostic_guardrail: 'Synthetic demonstration data. Non-diagnostic research prototype.',
     grounded_mode: 'Local Autonomous Knowledge Engine',
     telemetry_context: {
       map_mmhg: payload.map_mmhg ?? 85.2,
@@ -292,21 +309,23 @@ export async function postSIQuery(payload: SIQueryPayload): Promise<SIQueryRespo
       shock_index: payload.shock_index ?? 0.67,
     },
     retrieved_graph_nodes: [
-      { id: 'RULE-MED-B13-102', label: 'NASA Flight Rule MED-B13-102', type: 'FlightRule' },
+      { id: 'RULE-MED-B13-102', label: 'Rule MED-B13-102 (Modeled on NASA Flight Rules)', type: 'FlightRule' },
       { id: 'IND-ORTHO-DELTA', label: 'Orthostatic HR Delta', type: 'Indicator' },
     ],
   };
 }
 
 export async function fetchFlightRules(astronautId: string): Promise<any> {
-  try {
-    const res = await fetch(`${API_BASE}/flight-rules/${astronautId}`);
-    if (res.ok) return await res.json();
-  } catch (_err) {
-    // Fallback
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/flight-rules/${astronautId}`);
+      if (res.ok) return await res.json();
+    } catch (_err) {
+      // Fallback
+    }
   }
   return {
-    status: 'NO-GO',
+    status: 'CAUTION',
     rules: ['RULE-MED-B13-102', 'RULE-MED-B13-104', 'RULE-MED-B13-108'],
     cleared_for_ambulation: false,
     evaluated_criteria: {
@@ -319,40 +338,47 @@ export async function fetchFlightRules(astronautId: string): Promise<any> {
 }
 
 export async function fetchFhirExport(astronautId: string): Promise<any> {
-  try {
-    const res = await fetch(`${API_BASE}/export/fhir/${astronautId}`);
-    if (res.ok) return await res.json();
-  } catch (_err) {
-    // Fallback
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/export/fhir/${astronautId}`);
+      if (res.ok) return await res.json();
+    } catch (_err) {
+      // Fallback
+    }
   }
   return {
     resourceType: 'DiagnosticReport',
     id: `fhir-${astronautId}`,
     status: 'final',
-    code: { text: 'Astronaut Cardiovascular Adaptation Profile' },
+    code: { text: 'Astronaut Cardiovascular Adaptation Profile (Formatted to FHIR Observation Standard)' },
   };
 }
 
 export async function fetchCcsdsExport(astronautId: string): Promise<any> {
-  try {
-    const res = await fetch(`${API_BASE}/export/ccsds/${astronautId}`);
-    if (res.ok) return await res.json();
-  } catch (_err) {
-    // Fallback
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/export/ccsds/${astronautId}`);
+      if (res.ok) return await res.json();
+    } catch (_err) {
+      // Fallback
+    }
   }
   return {
     apid: '0x04F2',
     bytes: 40,
     hex_dump: '08F2C0010023...',
+    note: 'Modeled on CCSDS 133.0 space packet format',
   };
 }
 
 export async function fetchAuditSeal(astronautId: string): Promise<any> {
-  try {
-    const res = await fetch(`${API_BASE}/telemetry/audit-seal/${astronautId}`);
-    if (res.ok) return await res.json();
-  } catch (_err) {
-    // Fallback
+  if (HAS_REMOTE_BACKEND) {
+    try {
+      const res = await fetch(`${API_BASE}/telemetry/audit-seal/${astronautId}`);
+      if (res.ok) return await res.json();
+    } catch (_err) {
+      // Fallback
+    }
   }
   return {
     merkle_root_sha256: '05B474CDFED166299B7770ECAED3254B860E884FFB9A15124017C8A97F29BA74',

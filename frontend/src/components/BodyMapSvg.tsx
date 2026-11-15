@@ -30,7 +30,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
   const hotspots: HotspotConfig[] = [
     {
       id: 'baroreceptors',
-      name: 'Baroreceptors',
+      name: 'Baroreflex',
       indicator: 'orthostatic_hr_delta',
       cx: 120,
       cy: 78,
@@ -50,7 +50,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
     },
     {
       id: 'aorta',
-      name: 'Central Aorta',
+      name: 'Aorta',
       indicator: 'systolic_bp',
       cx: 124,
       cy: 160,
@@ -77,6 +77,15 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
     if (status.includes('Action') || status.includes('Alert')) return '#E11D48';
     if (status.includes('Watch') || status.includes('Review')) return '#F59E0B';
     return '#10B981';
+  };
+
+  const getStatusText = (indicator: string): string => {
+    const kpi = kpis[indicator];
+    if (!kpi) return 'Normal';
+    const status = kpi.status || '';
+    if (status.includes('Action') || status.includes('Alert')) return 'Alert';
+    if (status.includes('Watch') || status.includes('Review')) return 'Watch';
+    return 'Normal';
   };
 
   return (
@@ -228,28 +237,41 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
         Select a body region to inspect status and guidance.
       </p>
 
-      {/* Bottom 2x2 High-Contrast Selector Buttons (h-10 text-sm font-bold rounded-xl) */}
+      {/* Bottom 2x2 High-Contrast Selector Buttons with Text Status */}
       <div className="w-full grid grid-cols-2 gap-2 shrink-0">
         {hotspots.map((hs) => {
           const isSelected = selectedHotspot === hs.id;
           const color = getStatusColor(hs.indicator);
+          const statusText = getStatusText(hs.indicator);
 
           return (
             <button
               key={hs.id}
               type="button"
               onClick={() => onSelectHotspot(hs.id, hs.indicator)}
-              className={`h-10 px-3 text-sm font-bold rounded-xl border flex items-center gap-2 transition-all backdrop-blur-sm ${
+              className={`h-10 px-2.5 text-xs sm:text-sm font-bold rounded-xl border flex items-center justify-between transition-all backdrop-blur-sm ${
                 isSelected
                   ? 'bg-orange-500/25 text-orange-950 dark:text-orange-200 border-orange-500 shadow-xs'
                   : 'bg-white/20 dark:bg-slate-800/40 text-slate-800 dark:text-slate-200 border-transparent dark:border-slate-700/60 hover:border-orange-400 shadow-2xs'
               }`}
             >
-              <span
-                className="w-2.5 h-2.5 rounded-full shrink-0"
-                style={{ backgroundColor: color }}
-              />
-              <span className="truncate">{hs.name}</span>
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
+                  style={{ backgroundColor: color }}
+                  aria-hidden="true"
+                />
+                <span className="truncate">{hs.name}</span>
+              </div>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-bold shrink-0 ${
+                statusText === 'Alert'
+                  ? 'bg-rose-500/20 text-rose-700 dark:text-rose-300'
+                  : statusText === 'Watch'
+                  ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300'
+                  : 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300'
+              }`}>
+                {statusText}
+              </span>
             </button>
           );
         })}

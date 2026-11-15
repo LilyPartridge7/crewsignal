@@ -147,16 +147,15 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               <Compass className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" strokeWidth={2} />
               Challenge: Create Health Monitoring Software for Astronauts on Space Missions
             </span>
-            <span className="text-[11px] font-bold text-slate-500">TRL 7/8 READY</span>
+            <span className="text-[11px] font-bold text-slate-500">TRL 3/4 PROTOTYPE</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
-            Autonomous Cardiovascular Telemetry &amp; Orthostatic Intelligence
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+            Know if it's safe to stand up after landing &mdash; without waiting 22 minutes for Earth to answer.
           </h1>
 
           <p className="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed">
-            Predicting deep-space cerebral hypoperfusion, automating formal NASA Flight Rules (MED-B13-102),
-            and titrating isotonic countermeasure recovery for Artemis, Gateway, and Mars crews.
+            Autonomous cardiovascular telemetry and orthostatic intelligence prototype. Evaluates post-landing presyncope risk, models flight rule clearance, and titrates countermeasure recovery on-device for Lunar and Mars missions.
           </p>
 
           {/* Quick CTA Buttons */}
@@ -189,18 +188,18 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-extrabold">5 Verified Papers</span>
           </div>
           <div className="p-3 rounded-xl bg-sky-500/10 dark:bg-sky-950/20 border border-sky-500/25 dark:border-sky-800/40 backdrop-blur-sm flex flex-col justify-between shadow-2xs">
-            <span className="text-[10px] text-sky-800 dark:text-slate-400 uppercase font-bold">Clinical Autonomy</span>
-            <span className="text-sm font-black text-slate-900 dark:text-white">Level IV/V CDSS</span>
-            <span className="text-[10px] text-sky-700 dark:text-sky-400 font-extrabold">Zero Latency Local</span>
+            <span className="text-[10px] text-sky-800 dark:text-slate-400 uppercase font-bold">Decision Support</span>
+            <span className="text-sm font-black text-slate-900 dark:text-white">Autonomous CDSS</span>
+            <span className="text-[10px] text-sky-700 dark:text-sky-400 font-extrabold">Local Onboard Model</span>
           </div>
           <div className="p-3 rounded-xl bg-purple-500/10 dark:bg-purple-950/20 border border-purple-500/25 dark:border-purple-800/40 backdrop-blur-sm flex flex-col justify-between shadow-2xs">
             <span className="text-[10px] text-purple-800 dark:text-slate-400 uppercase font-bold">Data Standards</span>
             <span className="text-sm font-black text-slate-900 dark:text-white">CCSDS &amp; FHIR</span>
-            <span className="text-[10px] text-purple-700 dark:text-purple-400 font-extrabold">APID 0x04F2 / LSAH</span>
+            <span className="text-[10px] text-purple-700 dark:text-purple-400 font-extrabold">Modeled &amp; Formatted</span>
           </div>
           <div className="p-3 rounded-xl bg-amber-500/10 dark:bg-amber-950/20 border border-amber-500/25 dark:border-amber-800/40 backdrop-blur-sm flex flex-col justify-between shadow-2xs">
-            <span className="text-[10px] text-amber-800 dark:text-slate-400 uppercase font-bold">Flight Provenance</span>
-            <span className="text-sm font-black text-slate-900 dark:text-white">SHA-256 Ledger</span>
+            <span className="text-[10px] text-amber-800 dark:text-slate-400 uppercase font-bold">Data Integrity</span>
+            <span className="text-sm font-black text-slate-900 dark:text-white">SHA-256 Chain</span>
             <span className="text-[10px] text-amber-700 dark:text-amber-400 font-extrabold">Tamper-Evident</span>
           </div>
         </div>
@@ -246,6 +245,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 max="1"
                 step="0.01"
                 value={sandboxGravityG}
+                aria-label="Gravitational vector in Gs"
+                aria-valuemin={0}
+                aria-valuemax={1}
+                aria-valuenow={sandboxGravityG}
                 onChange={(e) => setSandboxGravityG(parseFloat(e.target.value))}
                 className="w-full accent-indigo-600 cursor-pointer h-1.5 bg-slate-300/40 dark:bg-slate-700/60 rounded-lg"
               />
@@ -273,6 +276,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 max="145"
                 step="1"
                 value={sandboxHr}
+                aria-label="Standing heart rate in beats per minute"
+                aria-valuemin={55}
+                aria-valuemax={145}
+                aria-valuenow={sandboxHr}
                 onChange={(e) => setSandboxHr(parseInt(e.target.value, 10))}
                 className="w-full accent-rose-600 cursor-pointer h-1.5 bg-slate-300/40 dark:bg-slate-700/60 rounded-lg"
               />
@@ -299,6 +306,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 max="140"
                 step="1"
                 value={sandboxSbp}
+                aria-label="Systolic blood pressure in millimeters of mercury"
+                aria-valuemin={80}
+                aria-valuemax={140}
+                aria-valuenow={sandboxSbp}
                 onChange={(e) => {
                   const val = parseInt(e.target.value, 10);
                   setSandboxSbp(val);
@@ -329,6 +340,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 max="95"
                 step="1"
                 value={sandboxDbp}
+                aria-label="Diastolic blood pressure in millimeters of mercury"
+                aria-valuemin={50}
+                aria-valuemax={95}
+                aria-valuenow={sandboxDbp}
                 onChange={(e) => {
                   const val = parseInt(e.target.value, 10);
                   setSandboxDbp(val);
@@ -361,15 +376,19 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             </div>
 
             <div className={`p-2 rounded-lg border backdrop-blur-sm shadow-2xs ${
-              liveCalc.pp < 25
+              liveCalc.pp < 30
                 ? 'bg-rose-500/15 border-rose-500/30 text-rose-700 dark:text-rose-400'
+                : liveCalc.pp < 40
+                ? 'bg-amber-500/15 border-amber-500/30 text-amber-700 dark:text-amber-400'
                 : 'bg-indigo-500/15 border-indigo-500/30 text-indigo-700 dark:text-indigo-300'
             }`}>
               <span className="text-[10px] text-slate-700 dark:text-slate-400 font-bold block">Pulse Pressure</span>
               <span className="text-sm font-black">
                 {liveCalc.pp} mmHg
               </span>
-              <span className="text-[9px] text-slate-600 dark:text-slate-400 font-semibold block">{liveCalc.pp < 25 ? 'Narrowed' : 'Normal'}</span>
+              <span className="text-[9px] text-slate-600 dark:text-slate-400 font-semibold block">
+                {liveCalc.pp < 30 ? 'Crit Narrowed' : liveCalc.pp < 40 ? 'Narrowed' : 'Normal'}
+              </span>
             </div>
 
             <div className={`p-2 rounded-lg border backdrop-blur-sm shadow-2xs ${
@@ -389,7 +408,9 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-400'
                 : 'bg-rose-500/15 border-rose-500/30 text-rose-700 dark:text-rose-400'
             }`}>
-              <span className="text-[10px] text-slate-700 dark:text-slate-400 font-bold block">Flight Rule B13</span>
+              <span className="text-[10px] text-slate-700 dark:text-slate-400 font-bold block" title="Modeled on NASA Flight Rules (e.g. MED-B13-102)">
+                Rule MED-B13
+              </span>
               <span className="text-xs font-black">
                 {liveCalc.flightRulePass ? 'GO CLEAR' : 'NO-GO'}
               </span>
@@ -505,8 +526,8 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             CCSDS, FHIR &amp; Cryptographic Ledger
           </h3>
           <p className="text-xs font-medium text-slate-700 dark:text-slate-300 leading-relaxed">
-            Export standardized CCSDS 133.0 binary space packets for Orion avionics and HL7 FHIR Space Profiles
-            for the NASA LSAH database. Sealed with FIPS 180-4 SHA-256 black-box audit ledger.
+            Telemetry export modeled on CCSDS 133.0 space packets and formatted to HL7 FHIR Observation standards.
+            Equipped with SHA-256 black-box audit verification.
           </p>
           <div className="pt-1 text-[11px] font-mono font-bold text-emerald-800 dark:text-emerald-300">
             APID 0x04F2 &bull; Tamper-Evident SHA-256

@@ -76,8 +76,8 @@ export const App: React.FC = () => {
     setActiveTab(tab);
   };
 
-  // Lifted Picture-in-Picture (PiP) Guide state (starts open on initial load)
-  const [pipOpen, setPipOpen] = useState<boolean>(true);
+  // Lifted Picture-in-Picture (PiP) Guide state (starts closed, opened on user click)
+  const [pipOpen, setPipOpen] = useState<boolean>(false);
   const [pipIndex, setPipIndex] = useState<number>(0);
   const [pipMinimized, setPipMinimized] = useState<boolean>(false);
 
@@ -299,7 +299,7 @@ ${d.structured_insight.recommended_crew_action}
           <div className="h-full w-full flex flex-col items-center justify-center space-y-3">
             <RefreshCw className="w-8 h-8 text-sky-600 dark:text-sky-400 animate-spin" />
             <p className="text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
-              Synchronizing Mission Telemetry with SQLite Engine...
+              Initializing Mission Telemetry &amp; Biophysical Models...
             </p>
           </div>
         )}

@@ -380,7 +380,7 @@ export const QuickLogDrawer: React.FC<QuickLogDrawerProps> = ({
                 <>Logging Telemetry...</>
               ) : (
                 <>
-                  <Check className="w-3.5 h-3.5" /> Commit to SQLite
+                  <Check className="w-3.5 h-3.5" /> Commit Telemetry
                 </>
               )}
             </button>

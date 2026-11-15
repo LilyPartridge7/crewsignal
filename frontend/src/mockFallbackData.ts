@@ -231,16 +231,16 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "svr_status": "Vasoconstricted (High Compensatory SVR)"
   },
   "flight_rules": {
-    "overall_status": "NO-GO",
+    "overall_status": "CAUTION",
     "evaluated_at_utc": "2026-11-15 04:09:25 UTC",
     "rules": [
       {
         "id": "RULE-MED-B13-102",
         "title": "Post-Landing Unassisted Ambulation Clearance",
-        "status": "NO-GO",
-        "action": "MANDATORY RECUMBENCY: Crewmember must NOT attempt unassisted ambulation.",
-        "rationale": "Flight Rule violation: Orthostatic Delta (31.5 bpm) \u2265 25.0 bpm threshold; Cerebral Perfusion Pressure (49.2 mmHg) < 50.0 mmHg critical ischemia boundary.",
-        "authority": "NASA Flight Operations Directorate & JSC Flight Surgeon Console"
+        "status": "CAUTION",
+        "action": "MONITORED AMBULATION: Crewmember authorized for assisted ambulation with counter-pressure active.",
+        "rationale": "Moderate postural stress detected. Orthostatic Delta within adaptive boundary; compensatory counter-pressure maintained.",
+        "authority": "Modeled on NASA Flight Rules & HRP Protocols"
       },
       {
         "id": "RULE-MED-B13-104",
@@ -249,15 +249,15 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
         "action": "Maintain anti-g suit bladders at 25\u201335 mmHg target.",
         "rationale": "Autonomic compensatory tachycardia active. Moderate splanchnic counter-pressure indicated.",
         "target_pressure_mmhg": 30,
-        "authority": "NASA HRP Orthostatic Countermeasure Protocol"
+        "authority": "Modeled on NASA HRP Orthostatic Countermeasure Protocol"
       },
       {
         "id": "RULE-MED-B13-108",
         "title": "Autonomous Syncope Emergency Override",
-        "status": "EMERGENCY_ACTIVE",
-        "action": "IMMEDIATE 30-DEGREE TRENDELENBURG POSITION + ACTIVE ISOMETRIC LEG-CROSSING.",
-        "rationale": "Acute cerebral hypoperfusion boundary reached (< 50 mmHg CPP). Syncope imminent.",
-        "authority": "NASA ExMC Autonomous Clinical Protocol Level IV/V"
+        "status": "MONITORING",
+        "action": "Maintain routine autonomic monitoring during postural transitions.",
+        "rationale": "Cerebral perfusion pressure stable above ischemia threshold.",
+        "authority": "Modeled on NASA ExMC Autonomous Protocols"
       }
     ]
   },
@@ -587,33 +587,33 @@ export const MOCK_DASHBOARDS: Record<string, any> = {
     "svr_status": "Vasoconstricted (High Compensatory SVR)"
   },
   "flight_rules": {
-    "overall_status": "GO",
+    "overall_status": "NO-GO",
     "evaluated_at_utc": "2026-11-15 04:09:26 UTC",
     "rules": [
       {
         "id": "RULE-MED-B13-102",
         "title": "Post-Landing Unassisted Ambulation Clearance",
-        "status": "GO",
-        "action": "Unassisted crew ambulation authorized under flight surgeon standby.",
-        "rationale": "Hemodynamic stability criteria met across MAP, Ortho Delta, and CPP.",
-        "authority": "NASA Flight Operations Directorate & JSC Flight Surgeon Console"
+        "status": "NO-GO",
+        "action": "MANDATORY RECUMBENCY: Crewmember must NOT attempt unassisted ambulation.",
+        "rationale": "Flight Rule violation: Severe compensatory tachycardia and postural volume shift.",
+        "authority": "Modeled on NASA Flight Rules & HRP Protocols"
       },
       {
         "id": "RULE-MED-B13-104",
         "title": "Anti-G Garment Pressure Titration",
-        "status": "STANDBY",
-        "action": "Anti-g suit standby (10\u201315 mmHg maintenance pressure).",
-        "rationale": "Hemodynamics within nominal baseline boundary.",
-        "target_pressure_mmhg": 10,
-        "authority": "NASA HRP Orthostatic Countermeasure Protocol"
+        "status": "ACTIVE_COMPRESSION",
+        "action": "Anti-g suit active (35\u201340 mmHg target pressure).",
+        "rationale": "High postural blood pooling requiring lower-body counter-pressure.",
+        "target_pressure_mmhg": 40,
+        "authority": "Modeled on NASA HRP Orthostatic Countermeasure Protocol"
       },
       {
         "id": "RULE-MED-B13-108",
         "title": "Autonomous Syncope Emergency Override",
-        "status": "STANDBY",
-        "action": "Routine autonomic monitoring active.",
-        "rationale": "Cerebral perfusion pressure above critical ischemia boundary.",
-        "authority": "NASA ExMC Autonomous Clinical Protocol Level IV/V"
+        "status": "EMERGENCY_STANDBY",
+        "action": "Trendelenburg posture ready if cerebral perfusion drops further.",
+        "rationale": "Cerebral hypoperfusion risk active.",
+        "authority": "Modeled on NASA ExMC Autonomous Protocols"
       }
     ]
   },

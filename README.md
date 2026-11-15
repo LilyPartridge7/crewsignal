@@ -2,7 +2,7 @@
 
 ## Autonomous Cardiovascular Telemetry and Orthostatic Adaptation System
 
-CrewSignal is an autonomous clinical decision support system (CDSS Level IV/V) engineered for human deep-space exploration missions (Artemis, Lunar Gateway, and Mars Transit) as well as isolated terrestrial clinics. Grounded in the NASA Human Research Program (NASA HRP Risk of Orthostatic Intolerance and Cardiovascular Deconditioning) and Canadian Space Agency (CSA) deep-space biomedical research, CrewSignal protects astronaut health when real-time ground communication with Mission Control is delayed or unavailable.
+CrewSignal is an autonomous clinical decision support system prototype (TRL 3/4 Concept & Validation) engineered for human deep-space exploration missions (Artemis, Lunar Gateway, and Mars Transit) as well as isolated terrestrial clinics. Grounded in the NASA Human Research Program (NASA HRP Risk of Orthostatic Intolerance and Cardiovascular Deconditioning) and Canadian Space Agency (CSA) deep-space biomedical research, CrewSignal tells an astronaut whether it is safe to stand up after landing without waiting 22 minutes for Earth to answer.
 
 ---
 
@@ -27,11 +27,11 @@ Using the biophysical hydrostatic equation (Delta P = rho * g * h), the engine c
 - Mean Arterial Pressure at the Brain Level: MAP_brain = MAP_heart - Delta P_hydro
 - Intracranial Pressure (ICP) estimate based on microgravity cephalad fluid redistribution
 - Real-time Cerebral Perfusion Pressure: CPP = MAP_brain - ICP (Target: >= 50 mmHg)
-- Automated evaluation of formal NASA Flight Rule MED-B13-102 (GO / NO-GO for unassisted standing and ambulation).
+- Automated evaluation of illustrative Flight Rule MED-B13-102 (modeled on NASA Flight Rules & HRP Protocols for unassisted ambulation clearance).
 
 ### Pillar 3: Interoperability, Audit Ledger, and Dual-Use
-- CCSDS 133.0 Space Packet Telemetry: Generates binary packets with application identifier APID 0x04F2 for Orion and Deep Space avionics telemetry buses.
-- HL7 FHIR Space Diagnostic Profiles: Formats clinical observations and diagnostic reports for ingestion into the NASA Longitudinal Study of Astronaut Health (LSAH).
+- CCSDS 133.0 Space Packet Telemetry: Modeled on binary packets with application identifier APID 0x04F2 for avionics telemetry buses.
+- HL7 FHIR Space Diagnostic Profiles: Formatted to HL7 FHIR observation standards for interoperable clinical health records.
 - FIPS 180-4 SHA-256 Audit Ledger: Hashes telemetry records into an immutable audit chain for post-mission flight surgery debriefs.
 - Dual-Use Earth Clinic Mode: Translates space autonomic deconditioning protocols to terrestrial remote clinics (e.g. Svalbard Arctic research stations and rural emergency care).
 

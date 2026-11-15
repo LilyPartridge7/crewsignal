@@ -241,7 +241,7 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
         'Input vitals are rejected if SBP <= DBP or values fall outside human survivability limits.',
       ],
       whereToUse: [
-        'Quick Vitals Logger drawer, Acute Assist modal, and backend SQLite commit.',
+        'Quick Vitals Logger drawer, Acute Assist modal, and telemetry session store.',
         'Preventing false positive medical alerts after strenuous EVA or exercise workouts.',
       ],
       forWhatToUse: [
@@ -371,7 +371,7 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
     {
       id: 'si_copilot',
       title: 'Neuro-Symbolic SI Co-Pilot',
-      subtitle: 'Deterministic NetworkX knowledge graph synthesis with offline fallback',
+      subtitle: 'Deterministic biomedical knowledge graph synthesis with offline fallback',
       targetTab: 'evidence',
       targetTabLabel: 'Consult SI Co-Pilot (View 4)',
       howToUse: [
@@ -396,7 +396,7 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
           <line x1="84" y1="40" x2="105" y2="40" stroke="#6366F1" strokeWidth="1.5" />
 
           <rect x="108" y="16" width="75" height="48" rx="6" fill="#0284C7" fillOpacity="0.2" stroke="#0284C7" strokeWidth="1.5" />
-          <text x="145" y="34" fontSize="7.5" fontWeight="700" textAnchor="middle" fill="#0284C7">NetworkX SI</text>
+          <text x="145" y="34" fontSize="7.5" fontWeight="700" textAnchor="middle" fill="#0284C7">Knowledge SI</text>
           <text x="145" y="48" fontSize="6" textAnchor="middle" fill="#10B981">NASA/CSA Nodes</text>
 
           <line x1="187" y1="40" x2="208" y2="40" stroke="#6366F1" strokeWidth="1.5" />
@@ -411,13 +411,13 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
     // 10. NASA Flight Rules & Space Data Standards (CCSDS & FHIR)
     {
       id: 'evidence_graph',
-      title: 'NASA Flight Rules & Space Data (CCSDS / FHIR)',
-      subtitle: 'Exploration Level IV/V CDSS & Interoperability Standards',
+      title: 'Flight Rules & Space Data Standards (CCSDS / FHIR)',
+      subtitle: 'Autonomous Decision Support (Concept) & Interoperability Standards',
       targetTab: 'evidence',
       targetTabLabel: 'Explore Evidence Graph (View 4)',
       howToUse: [
-        'Evaluate formal NASA Flight Rules (e.g. RULE-MED-B13-102 unassisted ambulation clearance).',
-        'Export telemetry as HL7 FHIR Space Profile (JSON) or CCSDS 133.0 Space Packet (HEX).',
+        'Evaluate illustrative flight rules modeled on NASA Flight Rules (e.g. RULE-MED-B13-102 ambulation clearance).',
+        'Export telemetry formatted to HL7 FHIR standards or modeled on CCSDS 133.0 space packets.',
       ],
       whereToUse: [
         'Overview Step 2 Header & Acute Assist Flight Surgeon SBAR console.',
@@ -484,10 +484,10 @@ export const PiPFunctionGuide: React.FC<PiPFunctionGuideProps> = ({
     );
   }
 
-  // Full Expanded Floating PiP Window (w-[390px], non-colliding position toggle)
+  // Full Expanded Floating PiP Window (Responsive w-full on mobile, sm:w-[390px], non-colliding position toggle)
   return (
-    <div className={`fixed ${position === 'top-right' ? 'top-28 right-4' : 'bottom-4 right-4'} z-[9999] pointer-events-auto transition-all duration-200`}>
-      <div className="w-[390px] rounded-2xl border border-transparent dark:border-white/15 shadow-2xl backdrop-blur-xl bg-white/60 dark:bg-[#0F172A]/85 p-3.5 space-y-2.5 animate-in fade-in zoom-in-95 duration-150 text-slate-900 dark:text-white select-none">
+    <div className={`fixed ${position === 'top-right' ? 'top-24 sm:top-28 right-4 left-4 sm:left-auto' : 'bottom-4 right-4 left-4 sm:left-auto'} z-[9999] pointer-events-auto transition-all duration-200 flex justify-end`}>
+      <div className="w-full sm:w-[390px] max-w-[390px] rounded-2xl border border-transparent dark:border-white/15 shadow-2xl backdrop-blur-xl bg-white/95 dark:bg-[#0F172A]/95 p-3.5 space-y-2.5 animate-in fade-in zoom-in-95 duration-150 text-slate-900 dark:text-white select-none">
         {/* Header Bar */}
         <div className="flex items-center justify-between border-b border-slate-900/[0.06] dark:border-slate-800 pb-2">
           <div className="flex items-center gap-2">

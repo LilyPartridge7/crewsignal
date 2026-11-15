@@ -109,7 +109,7 @@ export const SICopilotPanel: React.FC<SICopilotPanelProps> = ({
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Grounded exclusively in NetworkX knowledge graph &amp; 5 verified NASA HRP / CSA publications
+              Grounded in verified knowledge graph &amp; 5 NASA HRP / CSA research publications
             </p>
           </div>
         </div>

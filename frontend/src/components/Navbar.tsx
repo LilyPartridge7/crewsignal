@@ -110,19 +110,19 @@ export const Navbar: React.FC<NavbarProps> = ({
       isClinic
         ? 'border-transparent dark:border-emerald-500/20 bg-emerald-950/15 dark:bg-[#071714]/60 shadow-sm'
         : 'border-transparent dark:border-white/10 bg-white/25 dark:bg-[#0B1120]/50 shadow-sm'
-    } backdrop-blur-md overflow-hidden select-none`}>
+    } backdrop-blur-md select-none`}>
       {/* Row 1 — Brand, Scientific Provenance & Global Controls */}
-      <div className="h-12 px-5 flex items-center justify-between gap-4 border-b border-slate-900/[0.06] dark:border-slate-800/40">
-        {/* Left: Brand & Single-Line Non-Wrapping Provenance Badge */}
-        <div className="flex items-center gap-3 shrink-0">
-          <div className="flex items-center gap-2">
-            <Activity className={`w-6 h-6 animate-pulse ${isClinic ? 'text-emerald-500' : 'text-sky-500'}`} strokeWidth={2} />
-            <span className="text-xl font-extrabold tracking-tight whitespace-nowrap text-slate-900 dark:text-white">
+      <div className="min-h-12 py-1.5 px-3 sm:px-5 flex items-center justify-between gap-3 border-b border-slate-900/[0.06] dark:border-slate-800/40 overflow-x-auto scrollbar-none">
+        {/* Left: Brand & Responsive Provenance Badge */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Activity className={`w-5 h-5 sm:w-6 sm:h-6 animate-pulse ${isClinic ? 'text-emerald-500' : 'text-sky-500'}`} strokeWidth={2} />
+            <span className="text-lg sm:text-xl font-extrabold tracking-tight whitespace-nowrap text-slate-900 dark:text-white">
               CrewSignal
             </span>
           </div>
 
-          <div className={`whitespace-nowrap text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 border ${
+          <div className={`whitespace-nowrap text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1.5 border ${
             isClinic
               ? 'bg-emerald-500/15 text-emerald-900 dark:text-emerald-200 border-emerald-500/30'
               : 'bg-white/20 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-transparent dark:border-slate-700'
@@ -130,12 +130,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             {isClinic ? (
               <>
                 <Hospital className="w-3.5 h-3.5 text-emerald-500 shrink-0" strokeWidth={2} />
-                <span>TERRESTRIAL CLINIC • SVALBARD ARCTIC STATION • DUAL-USE</span>
+                <span className="hidden md:inline">TERRESTRIAL CLINIC • SVALBARD ARCTIC STATION • DUAL-USE</span>
+                <span className="inline md:hidden">SVALBARD CLINIC</span>
               </>
             ) : (
               <>
                 <ShieldAlert className="w-3.5 h-3.5 text-sky-500 shrink-0" strokeWidth={2} />
-                <span>SYNTHETIC DEMO • NASA HRP &amp; CSA • NON-DIAGNOSTIC</span>
+                <span className="hidden md:inline">SYNTHETIC DEMO • NASA HRP &amp; CSA • NON-DIAGNOSTIC</span>
+                <span className="inline md:hidden">NASA HRP • NON-DIAGNOSTIC</span>
               </>
             )}
           </div>
@@ -275,9 +277,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Row 2 — Compact Icon Navigation Tabs & PiP Launcher */}
-      <div className="h-12 px-5 flex items-center justify-between gap-4">
-        {/* Left: 4 Clean Icon-Led Navigation Buttons */}
-        <nav className="flex items-center gap-2">
+      <div className="min-h-12 py-1 px-3 sm:px-5 flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto scrollbar-none">
+        {/* Left: Clean Icon-Led Navigation Buttons */}
+        <nav className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {navTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -285,7 +287,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={tab.id}
                 type="button"
                 onClick={() => onSelectTab(tab.id)}
-                className={`h-9 px-3.5 rounded-xl text-sm font-bold whitespace-nowrap flex items-center gap-2 transition-colors border ${
+                className={`h-9 px-2.5 sm:px-3.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap flex items-center gap-1.5 sm:gap-2 transition-colors border ${
                   isActive
                     ? 'bg-sky-600 text-white border-sky-500 shadow-sm dark:bg-sky-500'
                     : 'bg-transparent text-slate-600 dark:text-slate-400 border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white'
@@ -303,7 +305,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={onOpenPiPGuide}
-            className="h-9 px-3.5 rounded-xl text-xs font-extrabold whitespace-nowrap flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white shadow-sm transition-colors border border-violet-400/40"
+            className="h-9 px-3 sm:px-3.5 rounded-xl text-xs font-extrabold whitespace-nowrap flex items-center gap-1.5 sm:gap-2 bg-violet-600 hover:bg-violet-500 text-white shadow-sm transition-colors border border-violet-400/40"
             title="Open Interactive PiP Function Guide"
           >
             <PictureInPicture2 className="w-4 h-4 shrink-0" strokeWidth={2} />
