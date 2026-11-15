@@ -142,10 +142,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
         <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-sky-400/40 rounded-br pointer-events-none" />
 
         <div className="space-y-3 max-w-2xl">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-900 dark:text-sky-300 border border-sky-500/30 flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" strokeWidth={2} />
-              NASA SPACE APPS CHALLENGE 2025 • GLOBAL WINNER TIER ARCHITECTURE
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[11px] font-bold tracking-wide px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-900 dark:text-sky-300 border border-sky-500/30 flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" strokeWidth={2} />
+              Challenge: Create Health Monitoring Software for Astronauts on Space Missions
             </span>
             <span className="text-[11px] font-bold text-slate-500">TRL 7/8 READY</span>
           </div>
