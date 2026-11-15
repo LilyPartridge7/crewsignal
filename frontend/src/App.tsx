@@ -266,7 +266,7 @@ ${d.structured_insight.recommended_crew_action}
 
   return (
     // Single-viewport zero-scroll Bento Box frame
-    <div className="h-screen w-screen overflow-hidden flex flex-col p-3 gap-2.5 relative select-none">
+    <div className="h-[100dvh] w-full overflow-hidden flex flex-col p-2 sm:p-3 gap-2 sm:gap-3 relative text-cs-text">
       {/* Living Ambient Animated Backdrop */}
       <ReactiveBackdrop theme={theme} mode={backdropMode} fit={backdropFit} />
 
@@ -297,10 +297,8 @@ ${d.structured_insight.recommended_crew_action}
         {/* Loading State */}
         {loading && !dashboardData && (
           <div className="h-full w-full flex flex-col items-center justify-center space-y-3">
-            <RefreshCw className="w-8 h-8 text-sky-600 dark:text-sky-400 animate-spin" />
-            <p className="text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
-              Initializing Mission Telemetry &amp; Biophysical Models...
-            </p>
+            <RefreshCw className="w-7 h-7 text-cs-accent animate-spin" />
+            <p className="text-sm font-semibold text-cs-muted">Loading crew telemetry…</p>
           </div>
         )}
 

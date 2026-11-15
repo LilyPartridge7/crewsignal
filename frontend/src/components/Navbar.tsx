@@ -78,208 +78,38 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const navTabs: { id: NavTabId; label: string; icon: React.ReactNode }[] = [
-    {
-      id: 'home',
-      label: 'Mission Home',
-      icon: <Compass className="w-4 h-4" strokeWidth={2} />,
-    },
-    {
-      id: 'overview',
-      label: 'Overview',
-      icon: <LayoutDashboard className="w-4 h-4" strokeWidth={2} />,
-    },
-    {
-      id: 'timeline',
-      label: 'Timeline',
-      icon: <LineChart className="w-4 h-4" strokeWidth={2} />,
-    },
-    {
-      id: 'acute',
-      label: 'Acute Assist',
-      icon: <Siren className="w-4 h-4" strokeWidth={2} />,
-    },
-    {
-      id: 'evidence',
-      label: 'SI & Evidence',
-      icon: <BookOpenCheck className="w-4 h-4" strokeWidth={2} />,
-    },
+    { id: 'home', label: 'Home', icon: <Compass className="h-4 w-4" strokeWidth={2} /> },
+    { id: 'overview', label: 'Overview', icon: <LayoutDashboard className="h-4 w-4" strokeWidth={2} /> },
+    { id: 'timeline', label: 'Recovery', icon: <LineChart className="h-4 w-4" strokeWidth={2} /> },
+    { id: 'acute', label: 'Acute assist', icon: <Siren className="h-4 w-4" strokeWidth={2} /> },
+    { id: 'evidence', label: 'Evidence', icon: <BookOpenCheck className="h-4 w-4" strokeWidth={2} /> },
   ];
 
+  const iconBtn =
+    'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cs-line bg-cs-well text-cs-text transition-colors hover:bg-cs-panel-strong';
+  const selectWrap =
+    'inline-flex h-11 shrink-0 items-center gap-2 rounded-full border border-cs-line bg-cs-well pl-3 pr-2 text-sm font-semibold text-cs-text focus-within:border-cs-accent';
+
   return (
-    <header className={`max-w-[1440px] w-full mx-auto shrink-0 rounded-2xl border transition-all duration-300 ${
-      isClinic
-        ? 'border-transparent dark:border-emerald-500/20 bg-emerald-950/15 dark:bg-[#071714]/60 shadow-sm'
-        : 'border-transparent dark:border-white/10 bg-white/25 dark:bg-[#0B1120]/50 shadow-sm'
-    } backdrop-blur-md select-none`}>
-      {/* Row 1 — Brand, Scientific Provenance & Global Controls */}
-      <div className="min-h-12 py-1.5 px-3 sm:px-5 flex items-center justify-between gap-3 border-b border-slate-900/[0.06] dark:border-slate-800/40 overflow-x-auto scrollbar-none">
-        {/* Left: Brand & Responsive Provenance Badge */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <Activity className={`w-5 h-5 sm:w-6 sm:h-6 animate-pulse ${isClinic ? 'text-emerald-500' : 'text-sky-500'}`} strokeWidth={2} />
-            <span className="text-lg sm:text-xl font-extrabold tracking-tight whitespace-nowrap text-slate-900 dark:text-white">
-              CrewSignal
-            </span>
-          </div>
-
-          <div className={`whitespace-nowrap text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1.5 border ${
-            isClinic
-              ? 'bg-emerald-500/15 text-emerald-900 dark:text-emerald-200 border-emerald-500/30'
-              : 'bg-white/20 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-transparent dark:border-slate-700'
-          }`}>
-            {isClinic ? (
-              <>
-                <Hospital className="w-3.5 h-3.5 text-emerald-500 shrink-0" strokeWidth={2} />
-                <span className="hidden md:inline">TERRESTRIAL CLINIC • SVALBARD ARCTIC STATION • DUAL-USE</span>
-                <span className="inline md:hidden">SVALBARD CLINIC</span>
-              </>
-            ) : (
-              <>
-                <ShieldAlert className="w-3.5 h-3.5 text-sky-500 shrink-0" strokeWidth={2} />
-                <span className="hidden md:inline">AEROSPACE TELEMETRY • NASA HRP &amp; CSA • PROTOCOL ACTIVE</span>
-                <span className="inline md:hidden">NASA HRP • PROTOCOL ACTIVE</span>
-              </>
-            )}
-          </div>
+    <header className="cs-panel mx-auto w-full max-w-[1440px] shrink-0 select-none !rounded-[28px] px-3 py-2 sm:px-4">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        {/* Brand */}
+        <div
+          className="flex items-center gap-2.5 pl-1"
+          title="AEROSPACE TELEMETRY. Non-Diagnostic Prototype. Grounded in NASA HRP & CSA Research."
+        >
+          <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-cs-accent text-cs-accent-ink">
+            <Activity className="h-4 w-4" strokeWidth={2.4} />
+          </span>
+          <span className="text-lg font-extrabold tracking-tight">CrewSignal</span>
+          <span className="hidden items-center gap-1.5 rounded-full border border-cs-line px-2.5 py-1 text-xs font-semibold text-cs-muted 2xl:inline-flex">
+            {isClinic ? <Hospital className="h-3.5 w-3.5" strokeWidth={2} /> : <ShieldAlert className="h-3.5 w-3.5" strokeWidth={2} />}
+            {isClinic ? 'Svalbard clinic mode' : 'Research prototype, not for diagnosis'}
+          </span>
         </div>
 
-        {/* Right: Global Operational Controls */}
-        <div className="flex items-center gap-2 shrink-0">
-          {/* Crew Selector */}
-          <div className="h-9 px-3 rounded-lg text-xs font-bold whitespace-nowrap border border-transparent dark:border-slate-700 bg-white/30 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 flex items-center gap-1.5 focus-within:ring-1 focus-within:ring-sky-500">
-            <UserCheck className="w-4 h-4 text-slate-500 shrink-0" strokeWidth={2} />
-            <select
-              value={selectedAstronautId}
-              onChange={(e) => onSelectAstronaut(e.target.value)}
-              className="bg-transparent font-bold cursor-pointer focus:outline-none text-slate-800 dark:text-slate-200"
-              title="Select Active Astronaut Profile"
-            >
-              {astronauts.length > 0 ? (
-                astronauts.map((ast) => (
-                  <option key={ast.id} value={ast.id} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                    {ast.id === 'SYNTH-AST-01' ? 'Crew A-01' : 'Crew B-02'}
-                  </option>
-                ))
-              ) : (
-                <>
-                  <option value="SYNTH-AST-01" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Crew A-01</option>
-                  <option value="SYNTH-AST-02" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Crew B-02</option>
-                </>
-              )}
-            </select>
-          </div>
-
-          {/* Mission Phase Selector */}
-          <div className="h-9 px-3 rounded-lg text-xs font-bold whitespace-nowrap border border-transparent dark:border-slate-700 bg-white/30 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 flex items-center gap-1.5 focus-within:ring-1 focus-within:ring-sky-500">
-            <Orbit className="w-4 h-4 text-slate-500 shrink-0" strokeWidth={2} />
-            <select
-              value={activePhase}
-              onChange={(e) => onSelectPhase(e.target.value)}
-              className="bg-transparent font-bold cursor-pointer focus:outline-none text-slate-800 dark:text-slate-200 max-w-[155px] truncate"
-              title="Select Mission Gravitational Phase"
-            >
-              {availablePhases.map((p) => (
-                <option key={p} value={p} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                  {phaseShortNames[p] || p}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Environment Mode Toggle */}
-          <button
-            type="button"
-            onClick={onToggleOperationalMode}
-            className={`h-9 px-3 rounded-lg text-xs font-bold whitespace-nowrap border flex items-center gap-1.5 transition-colors shadow-2xs ${
-              isClinic
-                ? 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/25'
-                : 'bg-indigo-500/15 text-indigo-800 dark:text-indigo-300 border-indigo-500/40 hover:bg-indigo-500/25'
-            }`}
-            title="Toggle Spacecraft Flight Console vs. Earth Remote Clinic Dual-Use Mode"
-          >
-            {isClinic ? (
-              <Hospital className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" strokeWidth={2} />
-            ) : (
-              <Rocket className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" strokeWidth={2} />
-            )}
-            <span>{isClinic ? 'Earth Clinic' : 'Spacecraft'}</span>
-          </button>
-
-          {/* Export Report Button */}
-          <button
-            type="button"
-            onClick={onExportReport}
-            className="h-9 px-3 rounded-lg text-xs font-bold whitespace-nowrap border flex items-center gap-1.5 border-transparent dark:border-slate-700/60 bg-white/25 dark:bg-slate-800/60 hover:bg-white/40 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors shadow-2xs backdrop-blur-sm"
-            title="Export SBAR Flight-Surgeon Briefing"
-          >
-            <Download className="w-4 h-4 shrink-0" strokeWidth={2} />
-            <span>SBAR</span>
-          </button>
-
-          {/* Backdrop Mode Button (Video / Ambient CSS / Paused) */}
-          {onCycleBackdropMode && (
-            <button
-              type="button"
-              onClick={onCycleBackdropMode}
-              className="h-9 px-2.5 rounded-lg border border-transparent dark:border-slate-700/60 bg-white/25 dark:bg-slate-800/60 hover:bg-white/40 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs text-xs font-bold backdrop-blur-sm"
-              title={`Backdrop Mode: ${backdropMode === 'video' ? 'Video Active' : backdropMode === 'ambient' ? 'Pure CSS Mesh (Zero GPU Lag)' : 'Paused'} (Click to cycle)`}
-            >
-              {backdropMode === 'video' ? (
-                <Eye className="w-3.5 h-3.5 text-sky-500 shrink-0" strokeWidth={2} />
-              ) : backdropMode === 'ambient' ? (
-                <Sparkles className="w-3.5 h-3.5 text-emerald-500 shrink-0" strokeWidth={2} />
-              ) : (
-                <Pause className="w-3.5 h-3.5 text-amber-500 shrink-0" strokeWidth={2} />
-              )}
-              <span className="capitalize hidden xl:inline text-[11px]">
-                {backdropMode === 'video' ? 'Video' : backdropMode === 'ambient' ? 'Fast Mesh' : 'Paused'}
-              </span>
-            </button>
-          )}
-
-          {/* Backdrop Fit Toggle (Wide Fit = Native 100% Crisp / Cover = Full Screen) */}
-          {onToggleBackdropFit && backdropMode !== 'ambient' && (
-            <button
-              type="button"
-              onClick={onToggleBackdropFit}
-              className="h-9 px-2.5 rounded-lg border border-transparent dark:border-slate-700/60 bg-white/25 dark:bg-slate-800/60 hover:bg-white/40 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs text-xs font-bold backdrop-blur-sm"
-              title={
-                backdropFit === 'wide'
-                  ? 'Wide Fit: Native resolution without cropping/zooming. Click to switch to Cover.'
-                  : 'Cover: Full screen stretch. Click to switch to Wide Fit.'
-              }
-            >
-              {backdropFit === 'wide' ? (
-                <Minimize2 className="w-3.5 h-3.5 text-sky-500 shrink-0" strokeWidth={2} />
-              ) : (
-                <Maximize2 className="w-3.5 h-3.5 text-slate-500 shrink-0" strokeWidth={2} />
-              )}
-              <span className="capitalize hidden 2xl:inline text-[11px]">
-                {backdropFit === 'wide' ? 'Wide Fit' : 'Cover'}
-              </span>
-            </button>
-          )}
-
-          {/* Theme Toggle Button */}
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className="h-9 w-9 rounded-lg border border-transparent dark:border-slate-700/60 bg-white/25 dark:bg-slate-800/60 hover:bg-white/40 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center shrink-0 transition-colors shadow-2xs backdrop-blur-sm"
-            title="Toggle Light / Dark Mode"
-          >
-            {isDark ? (
-              <Sun className="w-4 h-4 text-amber-400 shrink-0" strokeWidth={2} />
-            ) : (
-              <Moon className="w-4 h-4 text-slate-700 shrink-0" strokeWidth={2} />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Row 2 — Compact Icon Navigation Tabs & PiP Launcher */}
-      <div className="min-h-12 py-1 px-3 sm:px-5 flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto scrollbar-none">
-        {/* Left: Clean Icon-Led Navigation Buttons */}
-        <nav className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        {/* Tabs */}
+        <nav className="order-3 -mx-1 flex w-full gap-1 overflow-x-auto px-1 pb-0.5 xl:order-none xl:w-auto" aria-label="Sections">
           {navTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -287,10 +117,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={tab.id}
                 type="button"
                 onClick={() => onSelectTab(tab.id)}
-                className={`h-9 px-2.5 sm:px-3.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap flex items-center gap-1.5 sm:gap-2 transition-colors border ${
-                  isActive
-                    ? 'bg-sky-600 text-white border-sky-500 shadow-sm dark:bg-sky-500'
-                    : 'bg-transparent text-slate-600 dark:text-slate-400 border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white'
+                aria-current={isActive ? 'page' : undefined}
+                className={`inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-semibold transition-colors ${
+                  isActive ? 'bg-cs-panel-strong text-cs-text shadow-sm' : 'text-cs-muted hover:text-cs-text'
                 }`}
               >
                 {tab.icon}
@@ -300,16 +129,97 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Right: Prominent PiP Guide Launcher */}
-        <div className="flex items-center gap-2 shrink-0">
+        {/* Controls */}
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <label className={selectWrap} title="Crew member">
+            <UserCheck className="h-4 w-4 text-cs-muted" strokeWidth={2} />
+            <span className="sr-only">Crew member</span>
+            <select
+              value={selectedAstronautId}
+              onChange={(e) => onSelectAstronaut(e.target.value)}
+              className="cursor-pointer bg-transparent pr-1 focus:outline-none"
+            >
+              {(astronauts.length ? astronauts.map((a) => a.id) : ['SYNTH-AST-01', 'SYNTH-AST-02']).map((id) => (
+                <option key={id} value={id} className="bg-white text-slate-900">
+                  {id === 'SYNTH-AST-01' ? 'Crew A-01' : 'Crew B-02'}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className={selectWrap} title="Mission phase">
+            <Orbit className="h-4 w-4 text-cs-muted" strokeWidth={2} />
+            <span className="sr-only">Mission phase</span>
+            <select
+              value={activePhase}
+              onChange={(e) => onSelectPhase(e.target.value)}
+              className="max-w-[150px] cursor-pointer truncate bg-transparent pr-1 focus:outline-none"
+            >
+              {availablePhases.map((p) => (
+                <option key={p} value={p} className="bg-white text-slate-900">
+                  {phaseShortNames[p] || p}
+                </option>
+              ))}
+            </select>
+          </label>
+
           <button
             type="button"
-            onClick={onOpenPiPGuide}
-            className="h-9 px-3 sm:px-3.5 rounded-xl text-xs font-extrabold whitespace-nowrap flex items-center gap-1.5 sm:gap-2 bg-violet-600 hover:bg-violet-500 text-white shadow-sm transition-colors border border-violet-400/40"
-            title="Open Interactive PiP Function Guide"
+            onClick={onToggleOperationalMode}
+            className={iconBtn}
+            title={isClinic ? 'Switch to spacecraft console' : 'Switch to Earth clinic mode'}
+            aria-label={isClinic ? 'Switch to spacecraft console' : 'Switch to Earth clinic mode'}
           >
-            <PictureInPicture2 className="w-4 h-4 shrink-0" strokeWidth={2} />
-            <span>PiP Guide</span>
+            {isClinic ? <Hospital className="h-4 w-4" strokeWidth={2} /> : <Rocket className="h-4 w-4" strokeWidth={2} />}
+          </button>
+
+          <button type="button" onClick={onExportReport} className={iconBtn} title="Download SBAR handoff" aria-label="Download SBAR handoff">
+            <Download className="h-4 w-4" strokeWidth={2} />
+          </button>
+
+          {onCycleBackdropMode && (
+            <button
+              type="button"
+              onClick={onCycleBackdropMode}
+              className={iconBtn}
+              title={`Background: ${backdropMode === 'video' ? 'video' : backdropMode === 'ambient' ? 'still' : 'paused'} (click to change)`}
+              aria-label="Change background mode"
+            >
+              {backdropMode === 'video' ? (
+                <Eye className="h-4 w-4" strokeWidth={2} />
+              ) : backdropMode === 'ambient' ? (
+                <Sparkles className="h-4 w-4" strokeWidth={2} />
+              ) : (
+                <Pause className="h-4 w-4" strokeWidth={2} />
+              )}
+            </button>
+          )}
+
+          {onToggleBackdropFit && backdropMode !== 'ambient' && (
+            <button
+              type="button"
+              onClick={onToggleBackdropFit}
+              className={`${iconBtn} hidden sm:inline-flex`}
+              title={backdropFit === 'wide' ? 'Fill the screen with the video' : 'Show the whole video frame'}
+              aria-label="Change video fit"
+            >
+              {backdropFit === 'wide' ? <Maximize2 className="h-4 w-4" strokeWidth={2} /> : <Minimize2 className="h-4 w-4" strokeWidth={2} />}
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className={iconBtn}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDark ? <Sun className="h-4 w-4" strokeWidth={2} /> : <Moon className="h-4 w-4" strokeWidth={2} />}
+          </button>
+
+          <button type="button" onClick={onOpenPiPGuide} className="cs-btn-primary hidden !px-4 md:inline-flex" title="Open the feature guide">
+            <PictureInPicture2 className="h-4 w-4" strokeWidth={2} />
+            <span>Guide</span>
           </button>
         </div>
       </div>
