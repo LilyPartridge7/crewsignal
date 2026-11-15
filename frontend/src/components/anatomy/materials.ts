@@ -152,9 +152,9 @@ export function skinMaterial() {
 }
 
 /**
- * Skeletal muscle: fibre striations, white tendons at the joints, the
- * linea alba and tendinous bands of the abdomen, and a translucent trunk so
- * the ribcage and organs read through it as on an x-ray plate.
+ * Skeletal muscle: fibre striations, tendon sheen at the wrists and ankles,
+ * and a translucent trunk so the ribcage and organs read through it as on an
+ * x-ray plate. Expects object space in body units (feet at y = -2).
  */
 export function muscleMaterial() {
   return new THREE.ShaderMaterial({
@@ -181,15 +181,8 @@ export function muscleMaterial() {
         vec3 col = mix(deep, bright, 0.35 + fib * 0.45);
         col *= 1.0 - groove * 0.45;
 
-        float tendon = 0.0;
-        tendon += smoothstep(0.14, 0.02, p.y) * step(0.37, ax) * step(-0.03, p.y);                     // wrist tendons
-        tendon += step(ax, 0.6) * step(0.4, ax) * step(p.y, -0.03);                                      // back of the hand
-        tendon += smoothstep(-1.62, -1.8, p.y);                                                          // Achilles and ankle
-        tendon += exp(-pow((p.y + 0.95) / 0.045, 2.0)) * front * step(0.08, ax) * step(ax, 0.2);        // patellar tendon
-        tendon += exp(-pow(p.x / 0.007, 2.0)) * step(0.12, p.y) * step(p.y, 0.78) * front;               // linea alba
-        tendon += (exp(-pow((p.y - 0.36) / 0.007, 2.0)) + exp(-pow((p.y - 0.48) / 0.007, 2.0)) + exp(-pow((p.y - 0.6) / 0.007, 2.0)))
-                  * step(ax, 0.1) * front;                                                               // tendinous bands
-        tendon += smoothstep(0.03, 0.0, abs(p.y - 1.12)) * step(ax, 0.22) * 0.5;                         // clavicular line
+        // tendon sheen toward the ankles and wrists, where muscle gives way to tendon
+        float tendon = smoothstep(-1.62, -1.82, p.y) + smoothstep(0.1, -0.02, p.y) * step(0.36, ax) * 0.6;
         col = mix(col, vec3(0.93, 0.86, 0.78), clamp(tendon, 0.0, 1.0));
 
         vec3 L = normalize(uLight);
