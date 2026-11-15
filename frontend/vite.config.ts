@@ -20,6 +20,7 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           recharts: ['recharts'],
           lucide: ['lucide-react'],
+          three: ['three'],
         },
       },
     },
