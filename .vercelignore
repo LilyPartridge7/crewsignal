@@ -1,0 +1,9 @@
+# Exclude Python backend from Vercel static frontend deployment
+api/
+core/
+data/
+tests/
+requirements.txt
+__pycache__/
+*.pyc
+*.db
