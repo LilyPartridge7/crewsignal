@@ -23,48 +23,46 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
   selectedHotspot,
   onSelectHotspot,
   kpis,
-  theme,
+  theme: _theme,
 }) => {
-  const isDark = theme === 'dark';
-
   const hotspots: HotspotConfig[] = [
     {
       id: 'baroreceptors',
       name: 'Baroreflex',
       indicator: 'orthostatic_hr_delta',
-      cx: 120,
-      cy: 78,
-      r: 8,
+      cx: 110,
+      cy: 62,
+      r: 7,
       label: 'Neck Baroreflex',
       icon: <Activity className="w-4 h-4 shrink-0" strokeWidth={2} />,
-    },
-    {
-      id: 'heart',
-      name: 'Heart',
-      indicator: 'resting_hr',
-      cx: 112,
-      cy: 122,
-      r: 9,
-      label: 'Cardiac Output',
-      icon: <Heart className="w-4 h-4 shrink-0" strokeWidth={2} />,
     },
     {
       id: 'aorta',
       name: 'Aorta',
       indicator: 'systolic_bp',
-      cx: 124,
-      cy: 160,
-      r: 8,
+      cx: 104,
+      cy: 96,
+      r: 7,
       label: 'Arterial Pressure',
       icon: <Gauge className="w-4 h-4 shrink-0" strokeWidth={2} />,
+    },
+    {
+      id: 'heart',
+      name: 'Heart',
+      indicator: 'resting_hr',
+      cx: 124,
+      cy: 118,
+      r: 8,
+      label: 'Cardiac Output',
+      icon: <Heart className="w-4 h-4 shrink-0" strokeWidth={2} />,
     },
     {
       id: 'peripheral',
       name: 'Peripheral',
       indicator: 'cumulative_radiation_msv',
-      cx: 120,
-      cy: 242,
-      r: 9,
+      cx: 110,
+      cy: 182,
+      r: 8,
       label: 'Peripheral / Rad',
       icon: <Radiation className="w-4 h-4 shrink-0" strokeWidth={2} />,
     },
@@ -90,81 +88,42 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-between w-full h-full select-none gap-2">
-      {/* Centered Anatomical SVG Figure */}
-      <div className="relative w-full flex items-center justify-center flex-1 min-h-0">
+      {/* 3D Anatomical Telemetry Viewport (Semi-skeletal, Muscular, Cardiovascular) */}
+      <div className="relative w-full max-w-[210px] aspect-square flex items-center justify-center rounded-2xl overflow-hidden border border-slate-900/15 dark:border-sky-500/30 bg-slate-950 shadow-md">
+        {/* Cinematic Backdrop Ambient Glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111827] via-[#0B0F19] to-[#030712] pointer-events-none" />
+
+        {/* High-Tech HUD Matrix Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf80f_1px,transparent_1px),linear-gradient(to_bottom,#38bdf80f_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+
+        {/* 3D Anatomical Render Model */}
+        <img
+          src="/anatomy-3d-model.png"
+          alt="3D Anatomical Musculoskeletal &amp; Cardiovascular Model"
+          className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none opacity-95 brightness-105 contrast-110"
+        />
+
+        {/* Ambient Subtle Scanning Sweep */}
+        <div className="absolute inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-sky-400/50 to-transparent blur-[0.5px] top-1/3 animate-pulse pointer-events-none" />
+
+        {/* Corner HUD Reticles */}
+        <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-sky-400/60 pointer-events-none" />
+        <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-sky-400/60 pointer-events-none" />
+        <div className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-sky-400/60 pointer-events-none" />
+        <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-sky-400/60 pointer-events-none" />
+
+        {/* Top Viewport Micro-Badge */}
+        <div className="absolute top-1.5 left-3 right-3 flex items-center justify-between text-[8px] font-mono font-bold text-sky-400/80 pointer-events-none">
+          <span>BIO-TELEMETRY 3D</span>
+          <span>AUTONOMIC MAP</span>
+        </div>
+
+        {/* Interactive SVG Hotspots Overlay */}
         <svg
-          viewBox="0 0 240 340"
-          className="w-auto h-full max-h-[210px] select-none mx-auto"
+          viewBox="0 0 220 220"
+          className="absolute inset-0 w-full h-full select-none z-10"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            {/* Warm Natural Skin-Tone Gradients (#F6D2B8 → #DFA278 in Light Mode and #D99E76 → #B57850 in Dark Mode) */}
-            <linearGradient id="skinGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F6D2B8" />
-              <stop offset="100%" stopColor="#DFA278" />
-            </linearGradient>
-
-            <linearGradient id="skinGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#D99E76" />
-              <stop offset="100%" stopColor="#B57850" />
-            </linearGradient>
-
-            {/* Subtle Matrix Grid Pattern */}
-            <pattern id="bodyGrid" width="16" height="16" patternUnits="userSpaceOnUse">
-              <path
-                d="M 16 0 L 0 0 0 16"
-                fill="none"
-                stroke={isDark ? '#1E293B' : '#E2E8F0'}
-                strokeWidth="0.5"
-                strokeDasharray="2,2"
-              />
-            </pattern>
-          </defs>
-
-          {/* Canvas Subtle Grid Background */}
-          <rect width="240" height="340" fill="url(#bodyGrid)" rx="12" opacity={0.2} />
-
-          {/* Warm Natural Skin-Tone Body Silhouette */}
-          <g
-            stroke="#B97A52"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-            fill={isDark ? 'url(#skinGradientDark)' : 'url(#skinGradientLight)'}
-          >
-            {/* Cranium / Head */}
-            <circle cx="120" cy="42" r="22" />
-
-            {/* Neck */}
-            <path d="M 112 63 L 112 82 L 128 82 L 128 63 Z" />
-
-            {/* Torso & Upper Limbs */}
-            <path d="M 88 88 C 95 82, 105 82, 112 82 L 128 82 C 135 82, 145 82, 152 88 L 164 104 C 173 118, 178 138, 182 168 L 170 172 L 162 136 L 155 200 L 85 200 L 78 136 L 70 172 L 58 168 C 62 138, 67 118, 76 104 Z" />
-
-            {/* Lower Extremities */}
-            <path d="M 89 200 L 94 288 L 103 324 L 114 324 L 111 226 L 117 216 L 123 216 L 129 226 L 126 324 L 137 324 L 146 288 L 151 200 Z" />
-          </g>
-
-          {/* Overlaid Arterial Vessel System (Red #DC2626) */}
-          <g stroke="#DC2626" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={isDark ? 0.95 : 0.85}>
-            <path d="M 118 116 C 118 100, 116 86, 116 72" />
-            <path d="M 122 116 C 122 100, 124 86, 124 72" />
-            <path d="M 117 122 C 115 116, 122 114, 123 120 L 123 196" />
-            <path d="M 118 116 C 102 119, 84 129, 78 158" />
-            <path d="M 122 116 C 138 119, 156 129, 162 158" />
-            <path d="M 123 196 C 118 214, 109 240, 105 288" />
-            <path d="M 123 196 C 128 214, 137 240, 141 288" />
-          </g>
-
-          {/* Overlaid Venous Vessel System (Blue #2563EB) */}
-          <g stroke="#2563EB" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={isDark ? 0.9 : 0.8}>
-            <path d="M 114 72 C 114 88, 115 98, 115 116" />
-            <path d="M 126 72 C 126 88, 125 98, 125 116" />
-            <path d="M 117 116 L 117 196" />
-            <path d="M 117 196 C 113 214, 106 240, 102 288" />
-            <path d="M 117 196 C 121 214, 131 240, 134 288" />
-          </g>
-
-          {/* Clickable Anatomical Hotspots — ZERO CSS SCALE HOVER TRANSFORMS, NEVER JITTERS */}
           {hotspots.map((hs) => {
             const isSelected = selectedHotspot === hs.id;
             const color = getStatusColor(hs.indicator);
@@ -173,56 +132,66 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
               <g
                 key={hs.id}
                 onClick={() => onSelectHotspot(hs.id, hs.indicator)}
-                className="cursor-pointer"
+                className="cursor-pointer group"
               >
-                {/* Decorative Static Outer Ring */}
+                {/* Crosshair Ticks for Active/Selected Hotspot */}
+                {isSelected && (
+                  <g stroke={color} strokeWidth="1" strokeOpacity="0.8" className="pointer-events-none">
+                    <line x1={hs.cx - 14} y1={hs.cy} x2={hs.cx - hs.r - 3} y2={hs.cy} />
+                    <line x1={hs.cx + hs.r + 3} y1={hs.cy} x2={hs.cx + 14} y2={hs.cy} />
+                    <line x1={hs.cx} y1={hs.cy - 14} x2={hs.cx} y2={hs.cy - hs.r - 3} />
+                    <line x1={hs.cx} y1={hs.cy + hs.r + 3} x2={hs.cx} y2={hs.cy + 14} />
+                  </g>
+                )}
+
+                {/* Outer Radar Ring */}
                 <circle
                   cx={hs.cx}
                   cy={hs.cy}
-                  r={hs.r + 6}
+                  r={hs.r + (isSelected ? 6 : 4)}
                   fill="none"
                   stroke={color}
                   strokeWidth={isSelected ? 1.5 : 1}
-                  strokeDasharray={isSelected ? '3,3' : 'none'}
-                  strokeOpacity={isSelected ? 0.95 : 0.3}
-                  className="pointer-events-none transition-opacity duration-150"
+                  strokeDasharray={isSelected ? '2,2' : 'none'}
+                  strokeOpacity={isSelected ? 1 : 0.4}
+                  className="pointer-events-none transition-all duration-150"
                 />
 
-                {/* Soft Mid Glow */}
+                {/* Soft Pulse Halo */}
                 <circle
                   cx={hs.cx}
                   cy={hs.cy}
                   r={hs.r + 3}
                   fill={color}
-                  fillOpacity={isSelected ? 0.35 : 0.15}
-                  className="pointer-events-none transition-opacity duration-150"
+                  fillOpacity={isSelected ? 0.4 : 0.15}
+                  className="pointer-events-none transition-all duration-150"
                 />
 
-                {/* Solid Core Circle */}
+                {/* Solid Core Marker */}
                 <circle
                   cx={hs.cx}
                   cy={hs.cy}
                   r={hs.r}
                   fill={color}
                   stroke="#FFFFFF"
-                  strokeWidth={isSelected ? 2.5 : 1.5}
+                  strokeWidth={isSelected ? 2 : 1.2}
                   className="pointer-events-none"
                 />
 
-                {/* Center White Pin Dot */}
+                {/* Inner Bright Center Dot */}
                 <circle
                   cx={hs.cx}
                   cy={hs.cy}
-                  r="2.2"
+                  r="2"
                   fill="#FFFFFF"
                   className="pointer-events-none"
                 />
 
-                {/* Hit-Target (Generous click area, zero scale transforms) */}
+                {/* Generous Hit-Target */}
                 <circle
                   cx={hs.cx}
                   cy={hs.cy}
-                  r="16"
+                  r="18"
                   fill="transparent"
                   className="cursor-pointer"
                 />
@@ -234,7 +203,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
 
       {/* 1-Line Helper Prompt */}
       <p className="text-xs font-medium text-slate-500 dark:text-slate-400 text-center tracking-tight">
-        Select a body region to inspect status and guidance.
+        Select a 3D anatomical region to inspect status and flight guidance.
       </p>
 
       {/* Bottom 2x2 High-Contrast Selector Buttons with Text Status */}
