@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "project": "CrewSignal",
+    "challenge": "NASA Space Apps Challenge 2026 — Create Health Monitoring Software for Astronauts on Space Missions",
+    "focus_area": "Cardiovascular adaptation in microgravity, partial gravity, and postflight recovery",
+    "disclaimer": "CrewSignal is an evidence-informed astronaut health-monitoring prototype focused strictly on cardiovascular adaptation in microgravity and postflight recovery. It is NOT a diagnostic or prescriptive medical tool.",
+    "data_classification": "SYNTHETIC DEMONSTRATION DATA",
+    "citation_guardrail": "Exclusively references verified NASA Human Research Program (HRP) and Canadian Space Agency (CSA) publications without fabrication."
+  },
+  "evidence_sources": [
+    {
+      "id": "NASA-HRP-HAZ-01",
+      "title": "5 Hazards of Human Spaceflight: Altered Gravity Fields & Distance from Earth",
+      "organization": "NASA Human Research Program (HRP)",
+      "url": "https://www.nasa.gov/hrp/hazards/",
+      "summary": "NASA identifies altered gravity fields (0g microgravity, partial-g planetary surfaces, and return to 1g Earth) and distance from Earth as critical human spaceflight hazards. Gravity transitions induce fluid shifts toward the head, decrease total circulating blood volume, and lead to cardiovascular deconditioning.",
+      "mission_contexts": [
+        "In-Flight (0g Transit)",
+        "Planetary/Lunar Surface (Partial-g)",
+        "Early Postflight (1g Return)",
+        "Late Postflight Recovery"
+      ],
+      "related_indicators": [
+        "resting_hr",
+        "systolic_bp",
+        "diastolic_bp",
+        "orthostatic_hr_delta"
+      ]
+    },
+    {
+      "id": "NASA-HRP-RISK-01",
+      "title": "Risks of Human Spaceflight: Orthostatic Intolerance & Cardiovascular Adaptation",
+      "organization": "NASA Human Research Program (HRP)",
+      "url": "https://www.nasa.gov/hrp/risks/",
+      "summary": "Upon re-entering a gravity field following prolonged microgravity, astronauts experience orthostatic intolerance due to cephalad fluid shift during spaceflight, reduced plasma volume, and altered autonomic baroreflex sensitivity. Blood pools in the lower extremities upon standing, causing sudden heart rate acceleration and blood pressure drops.",
+      "mission_contexts": [
+        "In-Flight (0g Transit)",
+        "Early Postflight (1g Return)",
+        "Late Postflight Recovery"
+      ],
+      "related_indicators": [
+        "resting_hr",
+        "systolic_bp",
+        "orthostatic_hr_delta"
+      ]
+    },
+    {
+      "id": "NASA-HRP-RES-01",
+      "title": "Ongoing HRP Research in Space: Longitudinal Cardiovascular & Vascular Monitoring",
+      "organization": "NASA Human Research Program (HRP)",
+      "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/",
+      "summary": "HRP investigates continuous and longitudinal cardiovascular tracking to understand arterial stiffness, cardiac atrophy, and vascular remodeling across mission phases. In-flight countermeasures such as lower body negative pressure (LBNP) and resistive exercise help mitigate vascular deconditioning.",
+      "mission_contexts": [
+        "Preflight (1g Baseline)",
+        "In-Flight (0g Transit)",
+        "Planetary/Lunar Surface (Partial-g)",
+        "Early Postflight (1g Return)",
+        "Late Postflight Recovery"
+      ],
+      "related_indicators": [
+        "resting_hr",
+        "systolic_bp",
+        "diastolic_bp",
+        "orthostatic_hr_delta"
+      ]
+    },
+    {
+      "id": "CSA-RAD-2026-01",
+      "title": "Monitoring Radiation for Astronaut Health",
+      "organization": "Canadian Space Agency (CSA)",
+      "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp",
+      "summary": "The Canadian Space Agency highlights the critical role of personal and area radiation dosimeters in tracking cosmic ionizing radiation. Microgravity and radiation act synergistically on cellular repair, cardiovascular endothelium, and immune response, mandating strict cumulative dose tracking.",
+      "mission_contexts": [
+        "In-Flight (0g Transit)",
+        "Planetary/Lunar Surface (Partial-g)"
+      ],
+      "related_indicators": [
+        "cumulative_radiation_msv"
+      ]
+    },
+    {
+      "id": "CSA-SCI-2026-01",
+      "title": "Why Do We Conduct Science Experiments in Space?",
+      "organization": "Canadian Space Agency (CSA)",
+      "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp",
+      "summary": "Research in microgravity allows scientists to isolate gravity's effects on human physiology, providing invaluable insights into aging, vascular stiffness, and cardiovascular adaptation that inform health protocols both in space and on Earth.",
+      "mission_contexts": [
+        "Preflight (1g Baseline)",
+        "In-Flight (0g Transit)",
+        "Planetary/Lunar Surface (Partial-g)",
+        "Early Postflight (1g Return)",
+        "Late Postflight Recovery"
+      ],
+      "related_indicators": [
+        "resting_hr",
+        "systolic_bp",
+        "diastolic_bp",
+        "orthostatic_hr_delta"
+      ]
+    }
+  ],
+  "indicator_guides": {
+    "resting_hr": {
+      "indicator": "resting_hr",
+      "label": "Resting Heart Rate",
+      "unit": "bpm",
+      "how_to_measure": "Sit or lie comfortably at rest for at least 5 minutes before recording. Avoid physical exercise, caffeine, or high-exertion tasks for 30 minutes prior. Secure the physiological sensor snugly against clean skin.",
+      "why_it_matters": "Reflects baseline cardiovascular workload and autonomic nervous balance. In microgravity, cephalad fluid shift alters cardiac preload; upon return to 1g, resting heart rate often rises to compensate for reduced circulating plasma volume.",
+      "abnormal_action": "If your resting heart rate remains elevated >15 bpm above your preflight baseline across multiple checks, remain seated or supine, drink an electrolyte hydration pack, log the reading, and schedule a review with the flight surgeon at the next comms window."
+    },
+    "systolic_bp": {
+      "indicator": "systolic_bp",
+      "label": "Systolic Blood Pressure",
+      "unit": "mmHg",
+      "how_to_measure": "Rest quietly for 5 minutes in a seated or supported position. Secure the automated blood pressure cuff on your upper arm at heart level. Keep your arm relaxed and still during cuff inflation and deflation.",
+      "why_it_matters": "Measures peak arterial pressure when your heart contracts. During early postflight return to gravity, blood rushes toward the abdomen and lower extremities, which can cause systolic pressure to plummet and trigger presyncope.",
+      "abnormal_action": "If systolic BP drops more than 15 mmHg below personal baseline or you feel faint, lie flat immediately, elevate your legs, hydrate, and request crew assistance. Do not attempt unassisted standing or egress."
+    },
+    "diastolic_bp": {
+      "indicator": "diastolic_bp",
+      "label": "Diastolic Blood Pressure",
+      "unit": "mmHg",
+      "how_to_measure": "Recorded concurrently with systolic blood pressure using the standardized upper-arm pressure cuff protocol at rest.",
+      "why_it_matters": "Measures minimum arterial pressure between contractions, reflecting systemic vascular resistance and the vascular tone of peripheral arteries as your body adapts to shifting gravitational forces.",
+      "abnormal_action": "Note deviations exceeding ±12 mmHg from your preflight baseline. Check cuff placement, re-test after 10 minutes of quiet rest, and flag persistent shifts in your daily health log."
+    },
+    "orthostatic_hr_delta": {
+      "indicator": "orthostatic_hr_delta",
+      "label": "Orthostatic Heart Rate Delta",
+      "unit": "bpm",
+      "how_to_measure": "Record resting heart rate after 5 minutes supine or seated. Transition carefully to standing (or engage the prescribed Lower Body Negative Pressure - LBNP protocol during transit). Record heart rate after 3 minutes upright. Delta = Upright HR minus Resting HR.",
+      "why_it_matters": "The primary clinical screening biomarker for orthostatic intolerance. An exaggerated increase (>30 bpm) indicates that blood is pooling in lower vascular beds faster than autonomic baroreflexes can compensate.",
+      "abnormal_action": "If delta exceeds 30 bpm or you experience tunnel vision or lightheadedness, immediately sit or lie down, engage active calf pumping contractions, tighten lower-body compression garments, and notify your crew companion."
+    },
+    "cumulative_radiation_msv": {
+      "indicator": "cumulative_radiation_msv",
+      "label": "Cumulative Mission Radiation Dose",
+      "unit": "mSv",
+      "how_to_measure": "Automatically accumulated from your crew personal dosimeter (CPD) and cabin radiation detector units. Dock and sync your dosimeter weekly into the biomedical telemetry station.",
+      "why_it_matters": "Ionizing cosmic radiation and solar particle events cause cumulative biological stress on vascular endothelial cells, tissues, and DNA. Tracking cumulative exposure ensures mission safety limits are never breached.",
+      "abnormal_action": "If the dosimeter sounds an acute rate alert or cumulative dose increases abruptly, check habitat radiation consoles for solar particle event (SPE) alerts, notify Mission Control, and move to the designated shielded storm shelter."
+    }
+  }
+}
