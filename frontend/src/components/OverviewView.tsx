@@ -512,9 +512,9 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
       {/* ========================================================================= */}
       {/* MAIN GUIDED 3-COLUMN BENTO GRID: STEP 1 → STEP 2 → STEP 3                 */}
       {/* ========================================================================= */}
-      <div className="flex-1 min-h-0 grid grid-cols-12 gap-3">
+      <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-3">
         {/* STEP 1 Card: Body Region (Cols 1-4) */}
-        <div className="col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+        <div className="col-span-1 md:col-span-1 xl:col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
           {/* Subtle Corner Reticles */}
           <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-orange-400/40 rounded-tl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-orange-400/40 rounded-br pointer-events-none" />
@@ -551,7 +551,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
 
         {/* STEP 2 Card: Status & Action (Cols 5-8) */}
-        <div className="col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+        <div className="col-span-1 md:col-span-1 xl:col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
           {/* Subtle Corner Reticles */}
           <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-indigo-400/40 rounded-tl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-indigo-400/40 rounded-br pointer-events-none" />
@@ -817,7 +817,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
 
         {/* STEP 3 Card: Timer & Log (Cols 9-12) */}
-        <div className="col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+        <div className="col-span-1 md:col-span-2 xl:col-span-4 rounded-2xl border border-transparent dark:border-white/10 bg-white/25 dark:bg-[#080E1E]/50 backdrop-blur-md p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
           {/* Subtle Corner Reticles */}
           <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-emerald-400/40 rounded-tl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-emerald-400/40 rounded-br pointer-events-none" />

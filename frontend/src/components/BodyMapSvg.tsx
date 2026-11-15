@@ -126,7 +126,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
       <div className="relative w-full flex items-center justify-center flex-1 min-h-0">
         <svg
           viewBox="0 0 240 340"
-          className="w-auto h-full max-h-[210px] select-none mx-auto"
+          className="w-full h-full max-h-[260px] xl:max-h-[290px] select-none mx-auto"
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
         >
