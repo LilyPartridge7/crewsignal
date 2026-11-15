@@ -35,7 +35,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
       name: 'Baroreflex',
       indicator: 'orthostatic_hr_delta',
       cx: 124,
-      cy: 68,
+      cy: 64,
       r: 8,
       label: 'Neck Baroreflex',
       calloutSide: 'right',
@@ -47,7 +47,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
       name: 'Heart',
       indicator: 'resting_hr',
       cx: 114,
-      cy: 114,
+      cy: 112,
       r: 9,
       label: 'Cardiac Output',
       calloutSide: 'left',
@@ -58,8 +58,8 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
       id: 'aorta',
       name: 'Aorta',
       indicator: 'systolic_bp',
-      cx: 123,
-      cy: 150,
+      cx: 124,
+      cy: 148,
       r: 8,
       label: 'Arterial Pressure',
       calloutSide: 'right',
@@ -117,87 +117,8 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
     return `${val}`;
   };
 
-  // Medically realistic, proportionate adult human silhouette path in viewBox="0 0 240 340" (Center X = 120)
-  // Features: Proportionate cranium (38px tall, 24px wide), normal neck (12px), broader shoulders (acromion-to-acromion 64px),
-  // athletic chest and torso, realistic limb thickness (arms and thighs), and grounded anatomical posture.
-  const silhouettePath = [
-    'M 120 24',
-    // Cranium left
-    'C 114 24 109 29 108 36',
-    'C 107 43 110 50 113 56',
-    'C 114 58 116 61 117 62',
-    // Neck left
-    'C 116 65 115 70 114 74',
-    // Trapezius & Shoulder left (Broader shoulders)
-    'C 110 75 98 77 88 80',
-    'C 84 81 81 85 81 92',
-    // Left upper limb outer (Realistic limb thickness)
-    'C 81 99 82 112 83 126',
-    'C 83 134 83 146 83 158',
-    'C 83 166 82 174 82 184',
-    'C 82 189 83 194 85 194',
-    'C 86 194 87 190 88 184',
-    // Left upper limb inner back to axilla
-    'C 89 174 89 164 90 152',
-    'C 90 140 91 126 93 114',
-    'C 94 108 96 105 98 104',
-    // Torso left (Chest, waist, and iliac crest)
-    'C 97 112 96 122 96 130',
-    'C 96 138 97 144 98 150',
-    'C 97 156 95 164 94 172',
-    // Left leg outer (Proportionate muscular thigh and calf)
-    'C 94 182 95 202 96 220',
-    'C 96 228 97 236 97 244',
-    'C 97 254 95 266 95 278',
-    'C 95 290 98 304 99 316',
-    // Left foot and ankle
-    'C 99 321 97 325 94 329',
-    'C 94 331 96 332 100 332',
-    'C 104 332 106 330 106 327',
-    'C 106 322 105 319 104 316',
-    // Left leg inner up to perineum / crotch
-    'C 104 304 107 290 107 278',
-    'C 107 266 106 254 106 244',
-    'C 106 236 108 226 110 216',
-    'C 112 204 116 190 120 178',
-    // Right leg inner down from crotch
-    'C 124 190 128 204 130 216',
-    'C 132 226 134 236 134 244',
-    'C 134 254 133 266 133 278',
-    'C 133 290 136 304 136 316',
-    // Right foot and ankle
-    'C 135 319 134 322 134 327',
-    'C 134 330 136 332 140 332',
-    'C 144 332 146 331 146 329',
-    'C 143 325 141 321 141 316',
-    // Right leg outer up to hip
-    'C 142 304 145 290 145 278',
-    'C 145 266 143 254 143 244',
-    'C 143 236 144 228 144 220',
-    'C 145 202 146 182 146 172',
-    // Right torso (Iliac, waist, and axilla)
-    'C 145 164 143 156 142 150',
-    'C 143 144 144 138 144 130',
-    'C 144 122 143 112 142 104',
-    // Right upper limb inner down to hand
-    'C 144 105 146 108 147 114',
-    'C 149 126 150 140 150 152',
-    'C 151 164 151 174 152 184',
-    'C 153 190 154 194 155 194',
-    // Right upper limb outer back up to shoulder
-    'C 157 194 158 189 158 184',
-    'C 158 174 157 166 157 158',
-    'C 157 146 157 134 157 126',
-    'C 158 112 159 99 159 92',
-    'C 159 85 156 81 152 80',
-    // Right shoulder, neck & cranium back to vertex
-    'C 142 77 130 75 126 74',
-    'C 125 70 124 65 123 62',
-    'C 124 61 126 58 127 56',
-    'C 130 50 133 43 132 36',
-    'C 131 29 126 24 120 24',
-    'Z',
-  ].join(' ');
+  // Anatomically accurate human silhouette (proportional adult human standing frontal stance with robust, proportional arms matching leg thickness)
+  const silhouettePath = "M 120 24 C 113 24 107 28 106 36 C 105 43 107 50 110 56 C 111 58 113 60 114 60 C 113 62 112 65 111 68 C 108 71 96 75 84 79 C 78 81 68 85 66 93 C 65 101 65 114 66 124 C 66 130 67 136 68 138 C 67 146 67 154 68 160 C 69 165 71 169 72 172 C 72 176 73 180 74 183 C 75 186 77 188 78 188 C 80 188 82 186 83 182 C 84 180 86 178 86 175 C 86 173 85 171 85 170 C 84 162 84 152 84 142 C 84 135 84 128 85 122 C 85 116 86 110 88 106 C 92 112 92 120 93 128 C 93 132 94 136 95 140 C 95 148 93 158 92 170 C 92 182 93 206 94 226 C 94 234 95 240 95 244 C 95 252 92 260 92 270 C 92 282 95 300 98 316 C 98 320 96 324 96 328 C 96 330 98 330 102 330 C 105 330 106 328 106 325 C 106 320 105 316 105 312 C 105 298 108 284 108 270 C 108 260 106 252 106 244 C 106 230 109 206 114 196 C 116 192 118 187 120 184 C 122 187 124 192 126 196 C 131 206 134 230 134 244 C 134 252 132 260 132 270 C 132 284 135 298 135 312 C 135 316 134 320 134 325 C 134 328 135 330 138 330 C 142 330 144 330 144 328 C 144 324 142 320 142 316 C 145 300 148 282 148 270 C 148 260 145 252 145 244 C 145 240 146 234 146 226 C 147 206 148 182 148 170 C 147 158 145 148 145 140 C 146 136 147 132 147 128 C 148 120 148 112 152 106 C 154 110 155 116 155 122 C 156 128 156 135 156 142 C 156 152 156 162 155 170 C 155 171 154 173 154 175 C 154 178 156 180 157 182 C 158 186 160 188 162 188 C 163 188 165 186 166 183 C 167 180 168 176 168 172 C 169 169 171 165 172 160 C 173 154 173 146 172 138 C 173 136 174 130 174 124 C 175 114 175 101 174 93 C 172 85 162 81 156 79 C 144 75 132 71 129 68 C 128 65 127 62 126 60 C 127 60 129 58 130 56 C 133 50 135 43 134 36 C 133 28 127 24 120 24 Z";
 
   return (
     <div className="flex flex-col items-center justify-between w-full h-full select-none gap-2">
@@ -272,59 +193,50 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
           {/* 1. THE HUMANIC, CLINICAL SILHOUETTE ("MEDICAL GLASS" AESTHETIC)           */}
           {/* ========================================================================= */}
           <g id="humanSilhouette">
-            {/* Medical Glass Silhouette Body */}
+            {/* Medical Glass Silhouette Body with broad, proportional arms matching leg volume */}
             <path
               d={silhouettePath}
-              fill="rgba(30, 41, 59, 0.4)"
-              stroke="rgba(56, 189, 248, 0.6)"
-              strokeWidth="1"
+              fill="rgba(30, 41, 59, 0.45)"
+              stroke="rgba(56, 189, 248, 0.7)"
+              strokeWidth="1.2"
               strokeLinejoin="round"
             />
 
-            {/* Subtle Anatomical Contour Lines (rgba(255, 255, 255, 0.1)) */}
+            {/* Subtle Anatomical Contour Lines (rgba(255, 255, 255, 0.12)) */}
             <g
-              stroke="rgba(255, 255, 255, 0.1)"
+              stroke="rgba(255, 255, 255, 0.12)"
               strokeWidth="0.75"
               fill="none"
               strokeLinecap="round"
             >
               {/* Sagittal Center Axis */}
-              <line x1="120" y1="64" x2="120" y2="178" strokeDasharray="3 3" />
+              <line x1="120" y1="62" x2="120" y2="182" strokeDasharray="3 3" />
 
               {/* Clavicles */}
-              <path d="M 120 74 C 114 74 102 76 90 79" />
-              <path d="M 120 74 C 126 74 138 76 150 79" />
+              <path d="M 120 72 C 114 72 98 76 84 80" />
+              <path d="M 120 72 C 126 72 142 76 156 80" />
 
               {/* Pectoral Outlines */}
-              <path d="M 118 94 C 114 104 106 108 98 107" />
-              <path d="M 122 94 C 126 104 134 108 142 107" />
+              <path d="M 118 96 C 112 106 104 110 95 108" />
+              <path d="M 122 96 C 128 106 136 110 145 108" />
 
               {/* Ribcage / Costal Margins */}
-              <path d="M 118 116 C 114 117 106 120 98 122" />
-              <path d="M 122 116 C 126 117 134 120 142 122" />
-              <path d="M 118 124 C 114 125 107 128 100 130" />
-              <path d="M 122 124 C 126 125 133 128 140 130" />
-
-              {/* Iliac Crest / Pelvic Outlines */}
-              <path d="M 118 152 C 112 152 104 155 96 160" />
-              <path d="M 122 152 C 128 152 136 155 144 160" />
+              <path d="M 118 120 C 114 121 106 124 95 126" />
+              <path d="M 122 120 C 126 121 134 124 145 126" />
 
               {/* Joint Markings (Faint circles and landmarks) */}
               {/* Shoulders */}
-              <circle cx="90" cy="82" r="2.5" strokeDasharray="1.5 1.5" />
-              <circle cx="150" cy="82" r="2.5" strokeDasharray="1.5 1.5" />
+              <circle cx="84" cy="80" r="2.5" strokeDasharray="1.5 1.5" />
+              <circle cx="156" cy="80" r="2.5" strokeDasharray="1.5 1.5" />
               {/* Elbows */}
-              <circle cx="84" cy="134" r="2" strokeDasharray="1 1" />
-              <circle cx="156" cy="134" r="2" strokeDasharray="1 1" />
+              <circle cx="76" cy="135" r="2" strokeDasharray="1 1" />
+              <circle cx="164" cy="135" r="2" strokeDasharray="1 1" />
               {/* Wrists */}
-              <circle cx="83" cy="168" r="1.5" strokeDasharray="1 1" />
-              <circle cx="157" cy="168" r="1.5" strokeDasharray="1 1" />
+              <circle cx="78.5" cy="171" r="1.5" strokeDasharray="1 1" />
+              <circle cx="161.5" cy="171" r="1.5" strokeDasharray="1 1" />
               {/* Knees / Patellae */}
-              <ellipse cx="101" cy="240" rx="3" ry="4" strokeDasharray="2 2" />
-              <ellipse cx="139" cy="240" rx="3" ry="4" strokeDasharray="2 2" />
-              {/* Ankles */}
-              <line x1="99" y1="316" x2="105" y2="316" />
-              <line x1="135" y1="316" x2="141" y2="316" />
+              <ellipse cx="101" cy="244" rx="3" ry="4" strokeDasharray="2 2" />
+              <ellipse cx="139" cy="244" rx="3" ry="4" strokeDasharray="2 2" />
             </g>
           </g>
 
@@ -346,7 +258,7 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
           {/* Venous Vessel System (Blue #3B82F6) */}
           <g
             stroke="#3B82F6"
-            strokeWidth="1.5"
+            strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
@@ -354,21 +266,21 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
             opacity={0.9}
           >
             {/* Jugular Veins & Superior Vena Cava */}
-            <path d="M 115 48 L 115 62 C 115 78 114 90 115 104 L 115 116" />
-            <path d="M 126 48 L 126 62 C 126 78 122 90 116 104" />
-            {/* Left & Right Arm Veins */}
-            <path d="M 82 166 L 83 134 C 84 112 87 98 92 90 C 100 85 110 96 115 104" />
-            <path d="M 158 166 L 157 134 C 156 112 153 98 148 90 C 140 85 130 96 116 104" />
+            <path d="M 116 48 L 116 60 C 116 76 115 88 116 102 L 116 116" />
+            <path d="M 125 48 L 125 60 C 125 76 122 88 117 102" />
+            {/* Left & Right Arm Veins (comfortably centered in wider arm) */}
+            <path d="M 80 172 C 78 158 78 148 78 138 L 78 126 C 78 114 82 102 88 94 C 96 86 108 94 116 102" />
+            <path d="M 160 172 C 162 158 162 148 162 138 L 162 126 C 162 114 158 102 152 94 C 144 86 132 94 124 102" />
             {/* Inferior Vena Cava & Common Iliac / Femoral Veins */}
-            <path d="M 115 116 L 117 168" />
-            <path d="M 101 312 C 101 284 102 258 104 240 L 114 210 C 116 192 117 178 117 168" />
-            <path d="M 139 312 C 139 284 138 258 136 240 L 132 210 C 130 192 117 178 117 168" />
+            <path d="M 116 116 L 118 172" />
+            <path d="M 101 314 C 101 284 102 260 104 244 L 114 214 C 116 198 118 184 118 172" />
+            <path d="M 139 314 C 139 284 138 260 136 244 L 126 214 C 124 198 118 184 118 172" />
           </g>
 
           {/* Arterial Vessel System (Red #E11D48) */}
           <g
             stroke="#E11D48"
-            strokeWidth="1.5"
+            strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
@@ -376,19 +288,19 @@ export const BodyMapSvg: React.FC<BodyMapSvgProps> = ({
             opacity={0.95}
           >
             {/* Aortic Arch & Descending Aorta */}
-            <path d="M 116 114 C 116 104 122 102 123 106 L 123 168" />
+            <path d="M 117 114 C 117 104 123 102 124 106 L 124 172" />
             {/* Common Carotid Arteries */}
-            <path d="M 119 104 C 119 90 117 78 117 62 L 117 48" />
-            <path d="M 123 104 C 123 90 124 78 124 62 L 124 48" />
+            <path d="M 119 102 C 119 88 118 76 118 60 L 118 48" />
+            <path d="M 123 102 C 123 88 124 76 124 60 L 124 48" />
             {/* Cranial Micro-arteries */}
-            <path d="M 117 48 C 115 42 113 38 113 34" />
+            <path d="M 118 48 C 116 42 114 38 114 34" />
             <path d="M 124 48 C 126 42 128 38 128 34" />
-            {/* Subclavian to Brachial / Radial Arteries */}
-            <path d="M 119 104 C 110 96 98 87 90 89 C 85 96 83 112 84 134 L 83 166" />
-            <path d="M 123 104 C 132 96 144 87 150 89 C 155 96 157 112 156 134 L 157 166" />
+            {/* Subclavian to Brachial / Radial Arteries (comfortably centered in wider arm) */}
+            <path d="M 119 102 C 108 92 94 84 84 86 C 78 94 74 112 74 126 L 75 138 C 75 148 75 158 77 172" />
+            <path d="M 121 102 C 132 92 146 84 156 86 C 162 94 166 112 166 126 L 165 138 C 165 148 165 158 163 172" />
             {/* Common Iliac & Femoral Arteries */}
-            <path d="M 123 168 C 120 178 114 192 112 210 L 102 240 C 100 258 99 284 99 312" />
-            <path d="M 123 168 C 126 178 132 192 134 210 L 138 240 C 140 258 141 284 141 312" />
+            <path d="M 124 172 C 121 182 115 196 113 212 L 103 244 C 101 262 99 288 99 314" />
+            <path d="M 124 172 C 127 182 133 196 135 212 L 137 244 C 139 262 141 288 141 314" />
           </g>
 
           {/* ========================================================================= */}
