@@ -190,6 +190,51 @@ Follow these step-by-step instructions to publish the project to GitHub and depl
 7. Vercel will build the project in approximately 30 to 45 seconds and provide a live production URL (e.g. `https://crewsignal.vercel.app`).
 
 ---
+graph TD
+    classDef frontend fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef backend fill:#0f172a,stroke:#818cf8,stroke-width:2px,color:#f8fafc;
+    classDef data fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#f8fafc;
+    classDef output fill:#0f172a,stroke:#f59e0b,stroke-width:2px,color:#f8fafc;
+    classDef user fill:#1e293b,stroke:#cbd5e1,stroke-width:2px,color:#f8fafc;
+
+    User((Astronaut /<br>Rural Medic)):::user
+
+    subgraph Capture ["1. CAPTURE (Frontend: React + TS)"]
+        UI[Bento UI & Anatomical Body Map]:::frontend
+        CV[Computer Vision OCR<br/>Tesseract.js]:::frontend
+        Timer[3-Min Orthostatic Timer]:::frontend
+    end
+
+    subgraph Analyze ["2. ANALYZE (Backend: FastAPI + Python)"]
+        Math[Hemodynamic Engine<br/>MAP, Pulse Pressure, SI]:::backend
+        SI[Evidence-Grounded SI Assistant<br/>Neuro-Symbolic]:::backend
+    end
+
+    subgraph Ground Truth ["3. EVIDENCE & STORAGE (Local/Offline)"]
+        SQL[(SQLite<br/>Personal Baselines)]:::data
+        Graph{NetworkX Graph<br/>NASA HRP & CSA}:::data
+    end
+
+    subgraph Act ["4. ACT (Output)"]
+        Triage[Actionable Triage Steps]:::output
+        SBAR[Flight Surgeon SBAR Packet]:::output
+    end
+
+    %% Flow Connections
+    User -->|Manual/UI Interaction| UI
+    User -->|Webcam Monitor Scan| CV
+    User -->|Protocol Tracking| Timer
+
+    UI --> Math
+    CV --> Math
+    Timer --> Math
+
+    Math <-->|Check Baseline Z-Scores| SQL
+    Math --> SI
+    SI <-->|Trace to Verified Citations| Graph
+
+    Math --> Triage
+    SI --> SBAR
 
 ## 5. Medical and Operational Disclaimer
 
