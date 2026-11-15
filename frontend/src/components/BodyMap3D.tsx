@@ -111,18 +111,20 @@ interface ViewportProps extends BodyMap3DProps {
   setPicked: (p: { key: string; label: string; system: BodySystem } | null) => void;
   onExpand?: () => void;
   onClose?: () => void;
+  /** Stop drawing while another view covers this one. */
+  paused?: boolean;
 }
 
 const BodyViewport: React.FC<ViewportProps> = (props) => {
-  const { hotspots, selectedHotspot, onSelectHotspot, gravityG, heartRate = 72, theme, variant, mode, setMode, sex, setSex, picked, setPicked, onExpand, onClose } = props;
+  const { hotspots, selectedHotspot, onSelectHotspot, gravityG, heartRate = 72, theme, variant, mode, setMode, sex, setSex, picked, setPicked, onExpand, onClose, paused = false } = props;
   const full = variant === 'full';
   const mountRef = useRef<HTMLDivElement>(null);
   const labelRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const cb = useRef({ onSelectHotspot, setPicked });
   cb.current = { onSelectHotspot, setPicked };
   const viewRef = useRef({ zoom: 1, resetAt: 0 });
-  const stateRef = useRef({ gravityG, heartRate, selectedHotspot, theme, hotspots, mode, picked });
-  stateRef.current = { gravityG, heartRate, selectedHotspot, theme, hotspots, mode, picked };
+  const stateRef = useRef({ gravityG, heartRate, selectedHotspot, theme, hotspots, mode, picked, paused });
+  stateRef.current = { gravityG, heartRate, selectedHotspot, theme, hotspots, mode, picked, paused };
   const [status, setStatus] = useState<{ phase: 'loading' | 'ready' | 'failed' | 'nogl'; progress: number }>({ phase: 'loading', progress: 0 });
 
   const hotspotKey = hotspots.map((h) => `${h.id}:${h.anchor ?? ''}`).join('|');
@@ -409,6 +411,7 @@ const BodyViewport: React.FC<ViewportProps> = (props) => {
       const tick = (now: number) => {
         raf = requestAnimationFrame(tick);
         const s = stateRef.current;
+        if (s.paused) return;
         const dark = s.theme === 'dark';
         const view = viewRef.current;
         if (view.resetAt !== lastReset) {
@@ -704,7 +707,7 @@ export const BodyMap3D: React.FC<BodyMap3DProps> = (props) => {
   const shared = { ...props, mode, setMode, sex, setSex, picked, setPicked };
   return (
     <>
-      <BodyViewport {...shared} variant="panel" onExpand={() => setFull(true)} />
+      <BodyViewport {...shared} variant="panel" paused={full} onExpand={() => setFull(true)} />
       {full &&
         createPortal(
           <div className={`fixed inset-0 z-[80] bg-cs-ground ${props.theme === 'dark' ? 'dark' : ''}`} role="dialog" aria-modal="true" aria-label="Crew anatomy, full screen">
