@@ -46,6 +46,11 @@
     color-scheme: dark;
   }
 
+  /* Reserve the scrollbar's width so pages don't jump sideways when switching tabs */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     background: var(--cs-ground);

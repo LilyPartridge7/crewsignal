@@ -143,7 +143,7 @@ export const AcuteAssistView: React.FC<AcuteAssistViewProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-12 grid-rows-6 gap-2.5 h-full w-full overflow-hidden select-none">
+    <div className="grid grid-cols-12 grid-rows-6 gap-2.5 w-full flex-1 min-h-[max(720px,calc(100dvh-170px))] select-none">
       {/* ========================================================================= */}
       {/* LEFT BENTO CARD: Crewmate Acute Assist & SBAR Engine (Cols 1–6, Rows 1–6)  */}
       {/* ========================================================================= */}

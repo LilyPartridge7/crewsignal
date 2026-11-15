@@ -289,7 +289,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({ data, theme, operati
   };
 
   return (
-    <div className="mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col overflow-y-auto">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
       <div className="flex flex-col gap-3 pb-6 sm:gap-4">
         {/* Verdict strip */}
         <section className="cs-panel flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4 sm:px-6" aria-live="polite">

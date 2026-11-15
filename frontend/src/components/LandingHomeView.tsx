@@ -133,7 +133,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({ operationalMod
   const marker = Math.max(0, Math.min(100, ((calc.cpp - 30) / 50) * 100));
 
   return (
-    <div className="mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col overflow-y-auto">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
       <div className="flex flex-col gap-10 px-1 pb-10 pt-6 sm:gap-14 sm:px-4 sm:pt-12 lg:px-8">
         {/* Hero */}
         <section className="flex max-w-[680px] flex-col gap-6">

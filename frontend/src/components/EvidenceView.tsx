@@ -41,7 +41,7 @@ export const EvidenceView: React.FC<EvidenceViewProps> = ({
   });
 
   return (
-    <div className="grid grid-cols-12 grid-rows-6 gap-2.5 h-full w-full overflow-hidden select-none">
+    <div className="grid grid-cols-12 grid-rows-6 gap-2.5 w-full flex-1 min-h-[max(720px,calc(100dvh-170px))] select-none">
       {/* ========================================================================= */}
       {/* LEFT BENTO CARD: Embedded Super Intelligence (SI) Co-Pilot (Cols 1–5, Rows 1–6) */}
       {/* ========================================================================= */}

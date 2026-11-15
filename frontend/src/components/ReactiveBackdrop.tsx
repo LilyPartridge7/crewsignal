@@ -29,7 +29,7 @@ export default function ReactiveBackdrop({ theme, mode = 'video', fit = 'cover' 
   }, [mode, theme]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-50 overflow-hidden select-none" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 -z-50 overflow-hidden select-none [transform:translateZ(0)] [contain:strict]" aria-hidden="true">
       {/* Painted stand-in: shows instantly, and is the whole backdrop in "ambient" mode */}
       <div
         className="absolute inset-0 transition-colors duration-700"

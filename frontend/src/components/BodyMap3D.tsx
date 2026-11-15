@@ -400,6 +400,10 @@ const BodyViewport: React.FC<ViewportProps> = (props) => {
       const ro = new ResizeObserver(resize);
       ro.observe(mount);
       resize();
+      // Stop drawing while the panel is scrolled out of view, so page scrolling stays smooth.
+      let onScreen = true;
+      const io = new IntersectionObserver((entries) => { onScreen = entries[0]?.isIntersecting ?? true; });
+      io.observe(mount);
 
       // ---------------- loop ----------------
       let raf = 0;
@@ -411,7 +415,7 @@ const BodyViewport: React.FC<ViewportProps> = (props) => {
       const tick = (now: number) => {
         raf = requestAnimationFrame(tick);
         const s = stateRef.current;
-        if (s.paused) return;
+        if (s.paused || !onScreen) return;
         const dark = s.theme === 'dark';
         const view = viewRef.current;
         if (view.resetAt !== lastReset) {
@@ -514,6 +518,7 @@ const BodyViewport: React.FC<ViewportProps> = (props) => {
       return () => {
         cancelAnimationFrame(raf);
         ro.disconnect();
+        io.disconnect();
         el.removeEventListener('pointerdown', onDown);
         el.removeEventListener('pointermove', onMove);
         el.removeEventListener('pointerup', onUp);
